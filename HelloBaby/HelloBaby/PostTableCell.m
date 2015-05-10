@@ -10,8 +10,6 @@
 
 @implementation PostTableCell
 
-static const CGFloat spacing = 5;
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -25,8 +23,16 @@ static const CGFloat spacing = 5;
     [super awakeFromNib];
     
     // Initialization code
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width - [PostTableCell margin]*2;
+    self.bounds = CGRectMake(0, 0, width, 0);
+    //
     [_commentTableView setDataSource:self];
     [_commentTableView setDelegate:self];
+}
+
++ (CGFloat)margin
+{
+    return 8;
 }
 
 + (instancetype)view
@@ -37,6 +43,7 @@ static const CGFloat spacing = 5;
 
 - (id) fillWithData:(PostData *)data
 {
+    static const CGFloat spacing = 5;
     CGFloat originY = spacing;
     //
     _postLabel.text = data.postMsg;
@@ -111,6 +118,7 @@ static const CGFloat spacing = 5;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static const CGFloat spacing = 5;
     NSString *cellText =[_commentArray objectAtIndex:indexPath.row];
     UIFont *cellFont = [UIFont systemFontOfSize:13.0];
     

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *commentTableView;
 
 + (instancetype)view;
++ (CGFloat)margin;
 - (id) fillWithData:(PostData*)data;
 
 @end

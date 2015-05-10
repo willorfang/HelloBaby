@@ -52,6 +52,7 @@ static NSString* identifier = @"post-cell";
 
 -(void) reloadPostViews {
     // clear
+    CGFloat margin = [PostTableCell margin];
     CGFloat originY = _startY;
     [_postViewArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _postViewArray = [[NSMutableArray alloc] init];
@@ -60,10 +61,10 @@ static NSString* identifier = @"post-cell";
         PostData* postData = (PostData*)item;
         PostTableCell* cell = [[PostTableCell view] fillWithData:postData];
         //
-        cell.frame = CGRectMake(0, originY, cell.frame.size.width, cell.frame.size.height);
+        cell.frame = CGRectMake(margin, originY, cell.frame.size.width, cell.frame.size.height);
         [_scrollView addSubview:cell];
         //
-        originY += cell.bounds.size.height;
+        originY += cell.bounds.size.height + margin;
         [_postViewArray addObject:cell];
     }
     
