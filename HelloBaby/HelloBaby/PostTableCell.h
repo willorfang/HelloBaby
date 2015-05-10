@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostData.h"
 
 @interface PostTableCell : UIView<UITableViewDataSource, UITableViewDelegate> {
     NSArray* _commentArray;
 }
-
-@property (strong, nonatomic) NSArray* commentArray;
 
 @property (strong, nonatomic) IBOutlet UITextView *postLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *postImage;
@@ -20,5 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *likeButton;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) IBOutlet UITableView *commentTableView;
+
++ (instancetype)view;
+- (id) fillWithData:(PostData*)data;
 
 @end
