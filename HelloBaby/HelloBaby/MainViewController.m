@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "PostTableCell.h"
-#import "PostData.h"
+#import "PostNewItemViewController.h"
 
 @interface MainViewController ()
 
@@ -20,19 +20,20 @@
 
 static NSString* identifier = @"post-cell";
     
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // prepare the post data here
     _postDataArray = [[NSMutableArray alloc] init];
     //
     PostData* data1 = [[PostData alloc] init];
     data1.postMsg = @"看我的舌头真好看!";
-    data1.postImageName = @"baby1.jpg";
+    data1.postImage = [UIImage imageNamed:@"baby1.jpg"];
     data1.postStatus = @"2015/03/12 灵松之雪";
     data1.commentArray = [NSArray arrayWithObjects:@"真可爱!", @"赞!", @"卡哇伊!卡哇伊!卡哇伊!卡哇伊!卡哇伊!卡哇伊!卡哇伊!卡哇伊!卡哇伊!", nil];
     PostData* data2 = [[PostData alloc] init];
     data2.postMsg = @"今早，叫女儿起床上幼儿园，叫了她半小时就是不起，然后我就打了她小PP，她哭着起来了，等我们整被出门时，她跟我说：“我告诉了你爸爸说你打了我，他说会把你打回来。”我看着她无语了半天。";
-    data2.postImageName = @"baby2.jpg";
+    data2.postImage = [UIImage imageNamed:@"baby2.jpg"];
     data2.postStatus = @"2015/05/10 灵松之雪";
     data2.commentArray = [NSArray arrayWithObjects:@"狠心的妈妈!", @"好像亲自去哄...", @"唉，叫你不听话吧...唉，叫你不听话吧...唉，叫你不听话吧...唉，叫你不听话吧...唉，叫你不听话吧...", nil];
     [_postDataArray addObject:data1];
@@ -41,16 +42,19 @@ static NSString* identifier = @"post-cell";
     // create post views
     _startY = _backgroundImageView.frame.origin.y + _backgroundImageView.frame.size.height;
     [self reloadPostViews];
+    
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma -- create post views
 
--(void) reloadPostViews {
+-(void) reloadPostViews
+{
     // clear
     CGFloat margin = [PostTableCell margin];
     CGFloat originY = _startY;
@@ -71,6 +75,22 @@ static NSString* identifier = @"post-cell";
     // ATTENTION: need to set content size
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width,
                                            originY - _startY + _backgroundImageView.frame.size.height)];
+}
+
+- (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue
+{
+    
+}
+
+- (void)updateWithAddPostData:(PostData*)data
+{
+    [_postDataArray insertObject:data atIndex:0];
+    [self reloadPostViews];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    PostNewItemViewController* dest = (PostNewItemViewController*)segue.destinationViewController;
+    dest.parent = self;
 }
 
 @end

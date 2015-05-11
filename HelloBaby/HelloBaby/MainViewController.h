@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostData.h"
 
 @interface MainViewController : UIViewController {
     NSMutableArray* _postDataArray;
@@ -19,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+- (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue;
+- (void)updateWithAddPostData:(PostData*)data;
 @end
 

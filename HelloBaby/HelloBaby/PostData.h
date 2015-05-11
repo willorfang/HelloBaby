@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface PostData : NSObject
 
 @property (strong, nonatomic) NSString* postMsg;
-@property (strong, nonatomic) NSString* postImageName;
+@property (strong, nonatomic) UIImage* postImage;
 @property (strong, nonatomic) NSString* postStatus;
 @property (strong, nonatomic) NSArray* commentArray;
 @property NSInteger likeNum;

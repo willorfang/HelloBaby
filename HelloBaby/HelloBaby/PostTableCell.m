@@ -54,7 +54,7 @@
                                     _postLabel.frame.size.height)];
     //
     _postImage.contentMode = UIViewContentModeScaleAspectFit;
-    [_postImage setImage:[UIImage imageNamed:data.postImageName]];
+    [_postImage setImage:data.postImage];
     originY = _postLabel.frame.origin.y + _postLabel.frame.size.height + spacing;
     [_postImage setFrame:CGRectMake(_postImage.frame.origin.x,
                                     originY,

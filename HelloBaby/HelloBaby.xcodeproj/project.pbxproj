@@ -26,6 +26,9 @@
 		AE0F6FF31AFE6863006F09D4 /* default_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FEB1AFE6863006F09D4 /* default_background.jpg */; };
 		AE0F6FF41AFE6863006F09D4 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FEC1AFE6863006F09D4 /* like.png */; };
 		AE0F6FF51AFE6863006F09D4 /* post_record.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FED1AFE6863006F09D4 /* post_record.jpeg */; };
+		AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */; };
+		AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */; };
+		AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,10 @@
 		AE0F6FEB1AFE6863006F09D4 /* default_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default_background.jpg; path = res/default_background.jpg; sourceTree = "<group>"; };
 		AE0F6FEC1AFE6863006F09D4 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = like.png; path = res/like.png; sourceTree = "<group>"; };
 		AE0F6FED1AFE6863006F09D4 /* post_record.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = post_record.jpeg; path = res/post_record.jpeg; sourceTree = "<group>"; };
+		AE0F6FF71AFFC1FD006F09D4 /* PostNewItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNewItemViewController.h; sourceTree = "<group>"; };
+		AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNewItemViewController.m; sourceTree = "<group>"; };
+		AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cancel.png; path = res/cancel.png; sourceTree = "<group>"; };
+		AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_image.png; path = res/add_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				AE0F6FD51AFE67F2006F09D4 /* References */,
-				AE0F6FCE1AFE53ED006F09D4 /* PostCell */,
+				AE0F6FCE1AFE53ED006F09D4 /* PostListItem */,
 				AE0F6FCD1AFE53D8006F09D4 /* Views */,
 				AE0F6FA11AFE03EB006F09D4 /* AppDelegate.h */,
 				AE0F6FA21AFE03EB006F09D4 /* AppDelegate.m */,
@@ -149,6 +156,8 @@
 		AE0F6FCD1AFE53D8006F09D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AE0F6FF71AFFC1FD006F09D4 /* PostNewItemViewController.h */,
+				AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */,
 				AE0F6FA71AFE03EB006F09D4 /* SecondViewController.h */,
 				AE0F6FA81AFE03EB006F09D4 /* SecondViewController.m */,
 				AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */,
@@ -158,7 +167,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		AE0F6FCE1AFE53ED006F09D4 /* PostCell */ = {
+		AE0F6FCE1AFE53ED006F09D4 /* PostListItem */ = {
 			isa = PBXGroup;
 			children = (
 				AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */,
@@ -167,12 +176,14 @@
 				AE0F6FD21AFE5B11006F09D4 /* PostData.h */,
 				AE0F6FD31AFE5B11006F09D4 /* PostData.m */,
 			);
-			name = PostCell;
+			name = PostListItem;
 			sourceTree = "<group>";
 		};
 		AE0F6FD51AFE67F2006F09D4 /* References */ = {
 			isa = PBXGroup;
 			children = (
+				AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */,
+				AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */,
 				AE0F6FE61AFE6863006F09D4 /* baby.png */,
 				AE0F6FE71AFE6863006F09D4 /* baby1.jpg */,
 				AE0F6FE81AFE6863006F09D4 /* baby2.jpg */,
@@ -267,9 +278,11 @@
 			files = (
 				AE0F6FF51AFE6863006F09D4 /* post_record.jpeg in Resources */,
 				AE0F6FC71AFE4D26006F09D4 /* PostTableCell.xib in Resources */,
+				AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */,
 				AE0F6FF11AFE6863006F09D4 /* comment.png in Resources */,
 				AE0F6FEE1AFE6863006F09D4 /* baby.png in Resources */,
 				AE0F6FF31AFE6863006F09D4 /* default_background.jpg in Resources */,
+				AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */,
 				AE0F6FAC1AFE03EB006F09D4 /* Main.storyboard in Resources */,
 				AE0F6FF01AFE6863006F09D4 /* baby2.jpg in Resources */,
 				AE0F6FEF1AFE6863006F09D4 /* baby1.jpg in Resources */,
@@ -295,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0F6FA91AFE03EB006F09D4 /* SecondViewController.m in Sources */,
+				AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */,
 				AE0F6FA31AFE03EB006F09D4 /* AppDelegate.m in Sources */,
 				AE0F6FA61AFE03EB006F09D4 /* MainViewController.m in Sources */,
 				AE0F6FA01AFE03EB006F09D4 /* main.m in Sources */,
@@ -490,6 +504,7 @@
 				AE0F6FC21AFE03EB006F09D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE0F6FC31AFE03EB006F09D4 /* Build configuration list for PBXNativeTarget "HelloBabyTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +513,7 @@
 				AE0F6FC51AFE03EB006F09D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
