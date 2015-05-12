@@ -107,7 +107,7 @@
     }
     // initilize the cell
     cell.textLabel.text = (NSString*) [_commentArray objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:13.0];
+    cell.textLabel.font = [UIFont systemFontOfSize:12.0];
     cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
     // multiline
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -120,7 +120,7 @@
 {
     static const CGFloat spacing = 5;
     NSString *cellText =[_commentArray objectAtIndex:indexPath.row];
-    UIFont *cellFont = [UIFont systemFontOfSize:13.0];
+    UIFont *cellFont = [UIFont systemFontOfSize:12.0];
     
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:cellText
                                                                          attributes:@{
