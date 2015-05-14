@@ -48,7 +48,7 @@
 
 - (IBAction)sendButtonClicked:(id)sender
 {
-    if (_parent) {
+    if ([_postText.text length] > 0 || _uploadedImage) {
         PostData* data = [[PostData alloc] init];
         data.postMsg = _postText.text;
         data.postImage = _uploadedImage;
@@ -56,7 +56,7 @@
         [_parent updateWithAddPostData:data];
     }
     //
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [_parent dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)postImageButtonClicked:(id)sender

@@ -44,25 +44,40 @@
 - (id) fillWithData:(PostData *)data
 {
     static const CGFloat spacing = 5;
-    CGFloat originY = spacing;
+    CGFloat originY = 0;
     //
-    _postLabel.text = data.postMsg;
-    [_postLabel sizeToFit];
-    [_postLabel setFrame:CGRectMake(_postLabel.frame.origin.x,
-                                    originY,
-                                    _postLabel.frame.size.width,
-                                    _postLabel.frame.size.height)];
+    if ([data.postMsg length] > 0) {
+        _postLabel.text = data.postMsg;
+        [_postLabel sizeToFit];
+        [_postLabel setFrame:CGRectMake(_postLabel.frame.origin.x,
+                                        originY,
+                                        _postLabel.frame.size.width,
+                                        _postLabel.frame.size.height)];
+    } else {
+        [_postLabel setFrame:CGRectMake(_postLabel.frame.origin.x,
+                                        originY,
+                                        0,
+                                        0)];
+    }
     //
-    _postImage.contentMode = UIViewContentModeScaleAspectFit;
-    [_postImage setImage:data.postImage];
-    originY = _postLabel.frame.origin.y + _postLabel.frame.size.height + spacing;
-    [_postImage setFrame:CGRectMake(_postImage.frame.origin.x,
-                                    originY,
-                                    _postImage.frame.size.width,
-                                    _postImage.frame.size.height)];
+    if (data.postImage) {
+        _postImage.contentMode = UIViewContentModeScaleAspectFit;
+        [_postImage setImage:data.postImage];
+        originY +=  _postLabel.frame.size.height + spacing;
+        [_postImage setFrame:CGRectMake(_postImage.frame.origin.x,
+                                        originY,
+                                        _postImage.frame.size.width,
+                                        _postImage.frame.size.height)];
+    } else {
+        originY += _postLabel.frame.size.height;
+        [_postImage setFrame:CGRectMake(_postImage.frame.origin.x,
+                                        originY,
+                                        0,
+                                        0)];
+    }
     //
     _postStatus.text = data.postStatus;
-    originY = _postImage.frame.origin.y + _postImage.frame.size.height + spacing;
+    originY += _postImage.frame.size.height + spacing;
     [_postStatus setFrame:CGRectMake(_postStatus.frame.origin.x,
                                     originY,
                                     _postStatus.frame.size.width,
@@ -77,14 +92,14 @@
                                      _commentButton.frame.size.height)];
     //
     _commentArray = data.commentArray;
-    originY = _likeButton.frame.origin.y + _likeButton.frame.size.height + spacing;
+    originY += _likeButton.frame.size.height + spacing;
     [_commentTableView reloadData];
     [_commentTableView setFrame: CGRectMake(_commentTableView.frame.origin.x,
                                            originY,
                                            _commentTableView.contentSize.width,
                                            _commentTableView.contentSize.height)];
     //
-    originY = _commentTableView.frame.origin.y + _commentTableView.frame.size.height + spacing;
+    originY += _commentTableView.frame.size.height + spacing;
     [self setBounds:CGRectMake(0, 0, self.bounds.size.width, originY)];
     
     return self;
@@ -138,6 +153,5 @@
 {
      
 }
-
 
 @end
