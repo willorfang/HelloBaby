@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var post = require('./routes/post');
 
 var app = express();
 
@@ -18,12 +19,15 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.post('/posts', post.newRecord);
+// /babies/123456/posts?num=2
+app.get('/babies/:baby_id/posts', post.listPostsAboutBaby);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
