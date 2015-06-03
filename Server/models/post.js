@@ -64,7 +64,7 @@ Post.prototype.getCommentsByID = function(callback) {
 			"where Comment.record_id = ? ",
 			[post.id],
 			function(err, comments) {
-				console.log("Comment: id=%d, %s", post.id, JSON.stringify(comments));
+				// console.log("Comment: id=%d, %s", post.id, JSON.stringify(comments));
 				if (err) return callback(err);
 				callback(null, comments);
 			}
@@ -79,7 +79,7 @@ Post.prototype.getGoodsByID = function(callback) {
 			"where Good.record_id = ? ",
 			[post.id],
 			function(err, result) {
-				console.log("Good: id=%d, %s", post.id, JSON.stringify(result));
+				// console.log("Good: id=%d, %s", post.id, JSON.stringify(result));
 				if (err) return callback(err);
 				callback(null, result[0].count);
 			}
@@ -121,11 +121,12 @@ Post.prototype.listAboutBaby = function(baby_id, page_num, callback) {
 				var count = 0;
 				for(var i = 0; i < length; ++i) {
 					var post = new Post(rows[i]);
+					// attention: cache i & post
 					(function(index, post) {
 						post.getCommentsByID(function(err, result) {
 							if (err) return callback(err);
 							post.comments = result;
-							console.log("Test: " + JSON.stringify(post));
+							// console.log("Test: " + JSON.stringify(post));
 							post.getGoodsByID(function(err, result) {
 								if (err) return callback(err);
 								post.goodNum = result;
