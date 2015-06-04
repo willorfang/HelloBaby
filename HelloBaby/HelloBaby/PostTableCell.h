@@ -10,7 +10,7 @@
 #import "PostData.h"
 
 @interface PostTableCell : UIView<UITableViewDataSource, UITableViewDelegate> {
-    NSArray* _commentArray;
+    NSMutableArray* _commentArray;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *postLabel;
@@ -23,5 +23,6 @@
 + (instancetype)view;
 + (CGFloat)margin;
 - (id) fillWithData:(PostData*)data;
+- (NSString*) getCommentStringForIndex:(NSInteger)index;
 
 @end

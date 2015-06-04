@@ -29,6 +29,7 @@
 		AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */; };
 		AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */; };
 		AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */; };
+		AED4536D1B20A9930050AA08 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4536C1B20A9930050AA08 /* UserData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNewItemViewController.m; sourceTree = "<group>"; };
 		AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cancel.png; path = res/cancel.png; sourceTree = "<group>"; };
 		AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_image.png; path = res/add_image.png; sourceTree = "<group>"; };
+		AED4536B1B20A9930050AA08 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		AED4536C1B20A9930050AA08 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */,
 				AE0F6FD21AFE5B11006F09D4 /* PostData.h */,
 				AE0F6FD31AFE5B11006F09D4 /* PostData.m */,
+				AED4536B1B20A9930050AA08 /* UserData.h */,
+				AED4536C1B20A9930050AA08 /* UserData.m */,
 			);
 			name = PostListItem;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				AE0F6FA61AFE03EB006F09D4 /* MainViewController.m in Sources */,
 				AE0F6FA01AFE03EB006F09D4 /* main.m in Sources */,
 				AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */,
+				AED4536D1B20A9930050AA08 /* UserData.m in Sources */,
 				AE0F6FD41AFE5B11006F09D4 /* PostData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

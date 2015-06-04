@@ -14,7 +14,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _commentArray = [[NSArray alloc] init];
+        _commentArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -112,6 +112,13 @@
     return [_commentArray count];
 }
 
+- (NSString*) getCommentStringForIndex:(NSInteger)index
+{
+    CommentData* commentData = (CommentData*) [_commentArray objectAtIndex:index];
+    NSString* commentStr = [NSString stringWithFormat:@"%@:%@", commentData.username, commentData.content];
+    return commentStr;
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // get an cell
@@ -121,7 +128,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     // initilize the cell
-    cell.textLabel.text = (NSString*) [_commentArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self getCommentStringForIndex:indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:12.0];
     cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
     // multiline
@@ -134,7 +141,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static const CGFloat spacing = 5;
-    NSString *cellText =[_commentArray objectAtIndex:indexPath.row];
+    NSString *cellText = [self getCommentStringForIndex:indexPath.row];
     UIFont *cellFont = [UIFont systemFontOfSize:12.0];
     
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:cellText

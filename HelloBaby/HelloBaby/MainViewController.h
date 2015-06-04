@@ -10,6 +10,7 @@
 #import "PostData.h"
 
 @interface MainViewController : UIViewController {
+    PostDataRequest* _request;
     NSMutableArray* _postDataArray;
     CGFloat _startY;
     NSMutableArray* _postViewArray;
