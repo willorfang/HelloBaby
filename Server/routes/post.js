@@ -2,10 +2,11 @@ var Post = require('../models/post');
 
 exports.newRecord = function(req, res, next) {
 	var data = req.body.record;
+	var img_dir = 'img/post/' + req.files.img.name;
 
 	var post = new Post({
 		"content": data.content,
-		"img": data.img,
+		"img": img_dir,
 		"baby_id": data.baby_id,
 		"poster_id": data.poster_id
 	});
