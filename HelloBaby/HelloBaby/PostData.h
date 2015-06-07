@@ -27,6 +27,7 @@
 @end
 
 typedef void (^update_handler_t)(NSMutableArray*);
+typedef void (^empty_handler_t)();
 
 @interface PostDataRequest : NSObject {
     // response JSON data
@@ -34,5 +35,6 @@ typedef void (^update_handler_t)(NSMutableArray*);
 }
 
 - (void) requestPostsAboutBaby:(NSInteger)id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler;
+- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString*)msg AndImage:(UIImage*)image completeHandler:(empty_handler_t)handler;
 
 @end

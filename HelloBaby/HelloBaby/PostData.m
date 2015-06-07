@@ -91,4 +91,61 @@ NSString* kServerURL = @"http://localhost:3000";
     });
 }
 
+- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString *)msg AndImage:(UIImage *)image completeHandler:(empty_handler_t)handler
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString* url = [NSString stringWithFormat:@"%@/posts", kServerURL];
+        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: url]];
+        [request setHTTPMethod:@"POST"];
+        // set form information
+        NSString *boundary = @"----------------------------6a31e72a8c4c";
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        
+        //set body
+        NSMutableData *body = [NSMutableData data];
+        // baby_id
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[baby_id]\"\r\n\r\n%ld", baby_id] dataUsingEncoding:NSUTF8StringEncoding]];
+        // user_id
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[poster_id]\"\r\n\r\n%ld", user_id] dataUsingEncoding:NSUTF8StringEncoding]];
+        // msg
+        if (msg) {
+            [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[content]\"\r\n\r\n%@", msg] dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+        // image
+        if (image) {
+            [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"img\"; filename=\"baby-%ld.jpg\"\r\n", baby_id] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 1.0)]];
+        }
+        // end
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //
+        [request setHTTPBody:body];
+        // set the content-length
+        NSString *postLength = [NSString stringWithFormat:@"%ld", [body length]];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        NSLog(@"Request: %@", request);
+        NSLog(@"Body info: %@", [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+        
+        // do request
+        NSHTTPURLResponse *response;
+        NSError *error;
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (error) {
+            NSLog(@"REQUEST failed: %@", url);
+            return;
+        }
+        
+        // complete handler
+        handler();
+    });
+
+}
+
 @end

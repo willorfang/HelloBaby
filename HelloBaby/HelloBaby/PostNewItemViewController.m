@@ -8,6 +8,7 @@
 
 #import "PostNewItemViewController.h"
 #import "MainViewController.h"
+#import "PostData.h"
 
 @interface PostNewItemViewController ()
 
@@ -49,11 +50,19 @@
 - (IBAction)sendButtonClicked:(id)sender
 {
     if ([_postText.text length] > 0 || _uploadedImage) {
+        // data
         PostData* data = [[PostData alloc] init];
         data.postMsg = _postText.text;
         data.postImage = _uploadedImage;
         data.postStatus = [PostNewItemViewController getCurrentTime];
-        [_parent updateWithAddPostData:data];
+        // request to server
+        PostDataRequest* request = [[PostDataRequest alloc] init];
+        [request postAboutBaby:1 byUser:1 withMessage:_postText.text AndImage:_uploadedImage completeHandler:^{
+            // udpate UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_parent updateWithAddPostData:data];
+            });
+        }];
     }
     //
     [_parent dismissViewControllerAnimated:YES completion:nil];
