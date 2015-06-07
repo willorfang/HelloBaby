@@ -9,6 +9,7 @@ var multer  = require('multer');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var post = require('./routes/post');
+var baby = require('./routes/baby');
 
 var app = express();
 
@@ -26,9 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+// new a post
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
-// /babies/123456/posts?num=2
+// get posts about a baby
 app.get('/babies/:baby_id/posts', post.listPostsAboutBaby);
+// get info of a baby
+app.get('/babies/:baby_id', baby.info);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

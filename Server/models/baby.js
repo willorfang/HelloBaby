@@ -23,19 +23,43 @@ Baby.prototype.register = function(callback) {
      		[baby.name, baby.birthday, baby.avatar, baby.background, baby.status],
      		function(err, results) {
       			if (err) return callback(err);
-      			callback(null, results);
+      			callback(null, results[0]);
       		}
       );
 };
 
-Baby.prototype.update = function(callback) {
+Baby.prototype.updateAvatar = function(callback) {
 	var baby = this;
-	db.query("update Baby set avatar=?, background=?, status=? " +
+	db.query("update Baby set avatar=? " +
       		"where id=?",
-     		[baby.avatar, baby.background, baby.status, baby.id],
+     		[baby.avatar, baby.id],
      		function(err, results) {
       			if (err) return callback(err);
-      			callback(null, results);
+      			callback(null, results[0]);
+      		}
+      );
+};
+
+Baby.prototype.updateBackground = function(callback) {
+	var baby = this;
+	db.query("update Baby set background=? " +
+      		"where id=?",
+     		[baby.background, baby.id],
+     		function(err, results) {
+      			if (err) return callback(err);
+      			callback(null, results[0]);
+      		}
+      );
+};
+
+Baby.prototype.updateStatus = function(callback) {
+	var baby = this;
+	db.query("update Baby set status=? " +
+      		"where id=?",
+     		[baby.status, baby.id],
+     		function(err, results) {
+      			if (err) return callback(err);
+      			callback(null, results[0]);
       		}
       );
 };
@@ -46,7 +70,7 @@ Baby.prototype.getByID = function(callback) {
      		[baby.id],
      		function(err, results) {
       			if (err) return callback(err);
-      			callback(null, results);
+      			callback(null, results[0]);
       		}
       );
 };
@@ -60,41 +84,4 @@ Baby.prototype.getByName = function(callback) {
       			callback(null, results);
       		}
       );
-};
-
-Baby.prototype.list = function(callback) {
-	var post = this;
-	// get posts
-	db.query("select Record.id, Record.content, Record.img, Poster.relationship " +
-			"from (Record left join Poster on Record.poster_id = Poster.id) " +
-			"where Record.baby_id = ? " +
-			"limit ?, ?",
-			[ post.baby_id, post.pageNum * perPageCount, (post.pageNum + 1) * perPageCount - 1 ],
-			function(err, rows) {
-				if (err) return callback(err);
-				// get comments and goods
-				for(var item in rows) {
-					db.query("select Comment.content, Poster.username " +
-							"from (Comment left join Poster on Comment.poster_id = Poster.id) "
-							"where Comment.record_id = ? ",
-							[item.id],
-							function(err, comments) {
-								if (err) return callback(err);
-								item.comments = comments;
-							});
-					db.query("select count(*) " +
-							"from Good "
-							"where Good.record_id = ? ",
-							[item.id],
-							function(err, goodNum) {
-								if (err) return callback(err);
-								item.goodNum = goodNum;
-							});
-				}
-				//
-				setTimeOut(function() {
-					callback(null, rows);
-				}, 3);
-			}
-	);
 };

@@ -14,7 +14,7 @@ exports.newRecord = function(req, res, next) {
 	post.newRecord(function(err) {
 		if (err) return next(err);
 		res.send('OK');
-	})
+	});
 };
 
 exports.listPostsAboutBaby = function(req, res, next) {
@@ -27,5 +27,5 @@ exports.listPostsAboutBaby = function(req, res, next) {
 		if (err) return next(err);
 		res.set('Content-Type', "application/json");
 		res.send(JSON.stringify(posts, null, 4));
-	})
+	});
 };
