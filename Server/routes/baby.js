@@ -9,6 +9,8 @@ exports.register = function(req, res, next) {
 	if (req.files.background) {
 		background_path = 'img/avatar/' + req.files.background.name;
 	}
+	// console.log(data);
+	// console.log(req.files);
 
 	var baby = new Baby({
 		"name" : data.name,

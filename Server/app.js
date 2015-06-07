@@ -31,6 +31,8 @@ app.use('/users', users);
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
 // get posts about a baby
 app.get('/babies/:baby_id/posts', post.listPostsAboutBaby);
+// new a baby
+app.post('/babies', [ multer({ dest: path.join(__dirname, "public/img/avatar")}), baby.register]);
 // get info of a baby
 app.get('/babies/:baby_id', baby.info);
 
