@@ -20,7 +20,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2015/03/12" minimumFontSize="17" id="qsb-Rq-Ilh">
-                    <rect key="frame" x="8" y="254" width="142" height="24.5"/>
+                    <rect key="frame" x="8" y="254" width="179" height="24.5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="0.49929942255434778" green="0.49929942255434778" blue="0.49929942255434778" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>

@@ -15,18 +15,30 @@
 
 @implementation PostData
 
+-(NSString*) getStatusString
+{
+    NSString* relationship = [UserData getRelationshipName:self.relationship];
+    //
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    NSDate* date = [dateFormatter dateFromString:self.postTime];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString* dateString = [dateFormatter stringFromDate:date];
+    return [NSString stringWithFormat:@"%@  %@", relationship, dateString];
+}
+
 @end
 
 @implementation PostDataRequest
 
 NSString* kServerURL = @"http://localhost:3000";
 
--(void) requestPostsAboutBaby:(NSInteger)id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler
+-(void) requestPostsAboutBaby:(NSInteger)baby_id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler
 {
     // async request
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        NSString* url = [NSString stringWithFormat:@"%@/babies/%ld/posts?num=%ld", kServerURL, id, num];
+        NSString* url = [NSString stringWithFormat:@"%@/babies/%ld/posts?num=%ld", kServerURL, baby_id, num];
         NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString: url]];
         NSHTTPURLResponse *response;
         NSError *error;
@@ -76,8 +88,8 @@ NSString* kServerURL = @"http://localhost:3000";
                 commentData.content = [commentItem valueForKey:@"content"];
                 [data.commentArray addObject:commentData];
             }
-            RelationshipType relationshipType = [[item valueForKey:@"relationship"] integerValue];
-            data.postStatus = [UserData getRelationshipName:relationshipType];
+            data.relationship = [[item valueForKey:@"relationship"] integerValue];
+            data.postTime = [item valueForKey:@"time"];
             data.likeNum = [[item valueForKey:@"goodNum"] integerValue];
             //
             [postDataArray addObject:data];
@@ -91,7 +103,7 @@ NSString* kServerURL = @"http://localhost:3000";
     });
 }
 
-- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString *)msg AndImage:(UIImage *)image completeHandler:(empty_handler_t)handler
+- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString *)msg AndImage:(UIImage *)image atTime:(NSString*)timestamp completeHandler:(empty_handler_t)handler
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -108,9 +120,12 @@ NSString* kServerURL = @"http://localhost:3000";
         // baby_id
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[baby_id]\"\r\n\r\n%ld", baby_id] dataUsingEncoding:NSUTF8StringEncoding]];
-        // user_id
+        // poster_id
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[poster_id]\"\r\n\r\n%ld", user_id] dataUsingEncoding:NSUTF8StringEncoding]];
+        // time
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"record[time]\"\r\n\r\n%@", timestamp] dataUsingEncoding:NSUTF8StringEncoding]];
         // msg
         if (msg) {
             [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

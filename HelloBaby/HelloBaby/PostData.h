@@ -20,9 +20,12 @@
 
 @property (strong, nonatomic) NSString* postMsg;
 @property (strong, nonatomic) UIImage* postImage;
-@property (strong, nonatomic) NSString* postStatus;
+@property NSInteger relationship;
+@property (strong, nonatomic) NSString* postTime;
 @property (strong, nonatomic) NSMutableArray* commentArray;
 @property NSInteger likeNum;
+
+-(NSString*) getStatusString;
 
 @end
 
@@ -34,7 +37,15 @@ typedef void (^empty_handler_t)();
     NSMutableArray* _postDataArray;
 }
 
-- (void) requestPostsAboutBaby:(NSInteger)id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler;
-- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString*)msg AndImage:(UIImage*)image completeHandler:(empty_handler_t)handler;
+- (void) requestPostsAboutBaby:(NSInteger)baby_id
+                       pageNum:(NSInteger)num
+                 updateHandler:(update_handler_t)handler;
+
+- (void) postAboutBaby:(NSInteger)baby_id
+                byUser:(NSInteger)user_id
+           withMessage:(NSString*)msg
+              AndImage:(UIImage*)image
+                atTime:(NSString*)timestamp
+       completeHandler:(empty_handler_t)handler;
 
 @end

@@ -76,7 +76,7 @@
                                         0)];
     }
     //
-    _postStatus.text = data.postStatus;
+    _postStatus.text = [data getStatusString];
     originY += _postImage.frame.size.height + spacing;
     [_postStatus setFrame:CGRectMake(_postStatus.frame.origin.x,
                                     originY,

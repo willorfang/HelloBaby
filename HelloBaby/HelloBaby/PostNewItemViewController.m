@@ -42,7 +42,7 @@
 {
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd 灵松之雪";
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     return [dateFormatter stringFromDate:now];
 }
@@ -54,10 +54,11 @@
         PostData* data = [[PostData alloc] init];
         data.postMsg = _postText.text;
         data.postImage = _uploadedImage;
-        data.postStatus = [PostNewItemViewController getCurrentTime];
+        NSString* timestamp = [PostNewItemViewController getCurrentTime];
+        data.postTime = timestamp;
         // request to server
         PostDataRequest* request = [[PostDataRequest alloc] init];
-        [request postAboutBaby:1 byUser:1 withMessage:_postText.text AndImage:_uploadedImage completeHandler:^{
+        [request postAboutBaby:1 byUser:1 withMessage:_postText.text AndImage:_uploadedImage atTime:timestamp completeHandler:^{
             // udpate UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_parent updateWithAddPostData:data];
