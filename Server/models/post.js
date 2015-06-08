@@ -34,9 +34,9 @@ function Post(obj)
 
 Post.prototype.newRecord = function(callback) {
 	var post = this;
-	db.query("insert into Record (content, img, baby_id, poster_id) " +
-      		" VALUES (?, ?, ?, ?)",
-     		[post.content, post.img, post.baby_id, post.poster_id],
+	db.query("insert into Record (content, img, time, baby_id, poster_id) " +
+      		" VALUES (?, ?, ?, ?, ?)",
+     		[post.content, post.img, post.time, post.baby_id, post.poster_id],
      		function(err, results) {
       			if (err) return callback(err);
       			callback(null, results[0]);
@@ -109,9 +109,10 @@ var per_page_count = 20;
 // required: none
 Post.prototype.listAboutBaby = function(baby_id, page_num, callback) {
 	// get posts
-	db.query("select Record.id, Record.content, Record.img, Poster.relationship " +
+	db.query("select Record.id, Record.content, Record.img, Record.time, Poster.relationship " +
 			"from (Record left join Poster on Record.poster_id = Poster.id) " +
 			"where Record.baby_id = ? " +
+			"order by Record.time desc " +
 			"limit ?, ?",
 			[ baby_id, page_num * per_page_count, (page_num + 1) * per_page_count - 1 ],
 			function(err, rows) {

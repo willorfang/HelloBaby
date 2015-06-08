@@ -15,16 +15,16 @@ insert into Poster(username, password, baby_id, relationship)
 				('uncle3', 'uncle3', 3, 3);
 
 # Record
-insert into Record(content, img, baby_id, poster_id)
-		values('看我的舌头真好看!', 'img/post/baby1-1.jpg', 1, 1),
-			('看我的舌头真好看!', 'img/post/baby1-2.jpg', 1, 1),
-			('看我的舌头真好看!', 'img/post/baby1-3.jpg', 1, 1),
-			('看我的舌头真好看!', 'img/post/baby1-4.jpg', 1, 1),
-			('看我的舌头真好看!', 'img/post/baby1-5.jpg', 1, 2),
-			('看我的舌头真好看!', 'img/post/baby2-1.jpg', 2, 3),
-			('看我的舌头真好看!', 'img/post/baby2-2.jpg', 2, 3),
-			('看我的舌头真好看!', 'img/post/baby2-3.jpg', 2, 3),
-			('看我的舌头真好看!', 'img/post/baby3-1.jpg', 3, 5);
+insert into Record(content, img, time, baby_id, poster_id)
+		values('看我的舌头真好看!', 'img/post/baby1-1.jpg', '2009-08-03 10:20:13', 1, 1),
+			('看我的舌头真好看!', 'img/post/baby1-2.jpg', '2010-10-03 10:20:13', 1, 1),
+			('看我的舌头真好看!', 'img/post/baby1-3.jpg', '2009-09-13 00:21:10', 1, 1),
+			('看我的舌头真好看!', 'img/post/baby1-4.jpg', '2013-05-24 13:20:13', 1, 1),
+			('看我的舌头真好看!', 'img/post/baby1-5.jpg', '2009-11-23 22:34:22', 1, 2),
+			('看我的舌头真好看!', 'img/post/baby2-1.jpg', '2011-04-09 07:43:54', 2, 3),
+			('看我的舌头真好看!', 'img/post/baby2-2.jpg', '2011-12-24 16:22:25', 2, 3),
+			('看我的舌头真好看!', 'img/post/baby2-3.jpg', '2015-01-05 19:11:15', 2, 3),
+			('看我的舌头真好看!', 'img/post/baby3-1.jpg', '2014-08-15 11:21:14', 3, 5);
 
 # Comment
 insert into Comment(content, record_id, poster_id)

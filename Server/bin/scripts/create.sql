@@ -31,6 +31,7 @@ create table if not exists Record (
 	id BIGINT unsigned NOT NULL AUTO_INCREMENT,
 	content text,
 	img VARCHAR(255),
+	time TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
 	baby_id INT unsigned NOT NULL,
 	poster_id INT unsigned NOT NULL,
 	PRIMARY KEY(id),

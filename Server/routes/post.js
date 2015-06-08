@@ -13,6 +13,7 @@ exports.newRecord = function(req, res, next) {
 	var post = new Post({
 		"content": data.content || null,
 		"img": img_path,
+		"time": data.time,
 		"baby_id": data.baby_id,
 		"poster_id": data.poster_id
 	});
