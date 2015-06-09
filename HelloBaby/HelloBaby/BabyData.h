@@ -17,6 +17,4 @@
 @property (strong, nonatomic) NSData* background;
 @property (strong, nonatomic) NSString* status;
 
-- (BOOL) getDataById:(NSInteger)id;
-
 @end

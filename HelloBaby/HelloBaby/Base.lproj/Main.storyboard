@@ -63,6 +63,7 @@
                     <connections>
                         <outlet property="avatarImageView" destination="cYz-8W-qNT" id="Nnv-WG-0AG"/>
                         <outlet property="backgroundImageView" destination="dnS-5a-K2d" id="oYY-ij-bsk"/>
+                        <outlet property="naviItem" destination="3VS-vM-vhd" id="Wje-fB-uDE"/>
                         <outlet property="scrollView" destination="j4k-Df-IyB" id="dGP-Am-vYC"/>
                         <outlet property="statusLabel" destination="CB5-jH-7fx" id="zo6-DR-yed"/>
                     </connections>

@@ -10,10 +10,4 @@
 
 @implementation BabyData
 
-- (BOOL) getDataById:(NSInteger)id
-{
-    
-    return true;
-}
-
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BabyData.h"
 
 typedef NS_ENUM(NSUInteger, RelationshipType) {
     kRelationshipMom = 1,
@@ -17,6 +18,15 @@ typedef NS_ENUM(NSUInteger, RelationshipType) {
 
 @interface UserData : NSObject
 
+@property NSInteger user_id;
+@property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) BabyData* baby;
+@property NSInteger relationship;
+
+-(NSString*) getRelationshipName;
+-(NSString*) getIdentityName;
 +(NSString*) getRelationshipName:(RelationshipType)type;
++(NSDate*) getDateFromUTC:(NSString*)time;
++(UserData*) sharedUser;
 
 @end

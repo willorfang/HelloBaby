@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
+
 
 - (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue;
 - (void)updateWithAddPostData:(PostData*)data;

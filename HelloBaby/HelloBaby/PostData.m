@@ -18,20 +18,23 @@
 -(NSString*) getStatusString
 {
     NSString* relationship = [UserData getRelationshipName:self.relationship];
-    //
+    return [NSString stringWithFormat:@"%@  %@", relationship, self.postTime];
+}
+
++(NSString*) getTimeFromUTC:(NSString*)time
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    NSDate* date = [dateFormatter dateFromString:self.postTime];
+    NSDate* date = [dateFormatter dateFromString:time];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSString* dateString = [dateFormatter stringFromDate:date];
-    return [NSString stringWithFormat:@"%@  %@", relationship, dateString];
+    return [dateFormatter stringFromDate:date];
 }
 
 @end
 
 @implementation PostDataRequest
 
-NSString* kServerURL = @"http://localhost:3000";
+static NSString* kServerURL = @"http://localhost:3000";
 
 -(void) requestPostsAboutBaby:(NSInteger)baby_id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler
 {
@@ -79,8 +82,14 @@ NSString* kServerURL = @"http://localhost:3000";
         NSMutableArray* postDataArray = [[NSMutableArray alloc] init];
         for (NSDictionary* item in _postDataArray)  {
             PostData* data = [[PostData alloc] init];
-            data.postMsg = [item valueForKey:@"content"];
-            data.postImage = [item valueForKey:@"imgData"];
+            NSString* postMsg = [item objectForKey:@"content"];
+            if (postMsg != [NSNull null]) {
+                data.postMsg = postMsg;
+            }
+            UIImage* postImage = [item valueForKey:@"imgData"];
+            if (postImage != [NSNull null]) {
+                data.postImage = postImage;
+            }
             data.commentArray = [[NSMutableArray alloc] init];
             for (NSDictionary* commentItem in [item valueForKey:@"comments"]) {
                 CommentData* commentData = [[CommentData alloc] init];
@@ -89,7 +98,7 @@ NSString* kServerURL = @"http://localhost:3000";
                 [data.commentArray addObject:commentData];
             }
             data.relationship = [[item valueForKey:@"relationship"] integerValue];
-            data.postTime = [item valueForKey:@"time"];
+            data.postTime = [PostData getTimeFromUTC:[item valueForKey:@"time"]];
             data.likeNum = [[item valueForKey:@"goodNum"] integerValue];
             //
             [postDataArray addObject:data];

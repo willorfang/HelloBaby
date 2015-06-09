@@ -26,6 +26,7 @@
 @property NSInteger likeNum;
 
 -(NSString*) getStatusString;
++(NSString*) getTimeFromUTC:(NSString*)time;
 
 @end
 

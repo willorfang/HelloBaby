@@ -9,6 +9,7 @@
 #import "PostNewItemViewController.h"
 #import "MainViewController.h"
 #import "PostData.h"
+#import "UserData.h"
 
 @interface PostNewItemViewController ()
 
@@ -42,7 +43,7 @@
 {
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     return [dateFormatter stringFromDate:now];
 }
@@ -51,14 +52,16 @@
 {
     if ([_postText.text length] > 0 || _uploadedImage) {
         // data
+        UserData* user = [UserData sharedUser];
         PostData* data = [[PostData alloc] init];
         data.postMsg = _postText.text;
         data.postImage = _uploadedImage;
         NSString* timestamp = [PostNewItemViewController getCurrentTime];
         data.postTime = timestamp;
+        data.relationship = user.relationship;
         // request to server
         PostDataRequest* request = [[PostDataRequest alloc] init];
-        [request postAboutBaby:1 byUser:1 withMessage:_postText.text AndImage:_uploadedImage atTime:timestamp completeHandler:^{
+        [request postAboutBaby:user.baby.id byUser:user.user_id withMessage:_postText.text AndImage:_uploadedImage atTime:timestamp completeHandler:^{
             // udpate UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_parent updateWithAddPostData:data];

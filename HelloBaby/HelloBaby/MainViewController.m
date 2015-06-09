@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "PostTableCell.h"
 #import "PostNewItemViewController.h"
+#import "UserData.h"
 
 @interface MainViewController ()
 
@@ -23,10 +24,21 @@ static NSString* identifier = @"post-cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // init user info
+    UserData* user = [UserData sharedUser];
+    
+    _statusLabel.text = user.baby.status;
+    _naviItem.title = [user getIdentityName];
+    if (user.baby.avatar) {
+        _avatarImageView.image = [UIImage imageWithData:user.baby.avatar];
+    }
+    if (user.baby.background) {
+        _backgroundImageView.image = [UIImage imageWithData:user.baby.background];
+    }
     
     // prepare the post data here
     _request = [[PostDataRequest alloc] init];
-    [_request requestPostsAboutBaby:1 pageNum:0 updateHandler:^(NSMutableArray *data) {
+    [_request requestPostsAboutBaby:user.baby.id pageNum:0 updateHandler:^(NSMutableArray *data) {
         _postDataArray = data;
         dispatch_async(dispatch_get_main_queue(), ^{
             // create post views
