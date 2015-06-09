@@ -81,7 +81,7 @@ Baby.prototype.getByName = function(callback) {
      		[baby.name],
      		function(err, results) {
       			if (err) return callback(err);
-      			callback(null, results);
+      			callback(null, results[0]);
       		}
       );
 };

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var multer  = require('multer');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var post = require('./routes/post');
 var baby = require('./routes/baby');
 
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.get('/users/:user_id', user.getUserInfo);
 // new a post
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
 // get posts about a baby
