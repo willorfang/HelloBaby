@@ -23,3 +23,28 @@ exports.getUserInfo = function(req, res, next) {
 		});
 	});
 };
+
+// /users/login
+exports.login = function(req, res, next) {
+	var data = req.body;
+
+	var user = new User({
+		"username": data.username,
+		"password": data.password
+	});
+	// console.log(user);
+	user.getByName(function(err, user) {
+		if (err) return next(err);
+		// get baby info
+		var baby = new Baby({
+			"id": user.baby_id
+		});
+		baby.getByID(function(err, baby) {
+			if (err) return next(err);
+			user.baby = baby;
+			user.baby_id = undefined;
+			res.set('Content-Type', "application/json");
+			res.send(JSON.stringify(user, null, 4));
+		});
+	});
+};

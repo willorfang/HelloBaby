@@ -43,8 +43,8 @@ User.prototype.getByID = function(callback) {
 User.prototype.getByName = function(callback) {
 	var user = this;
 	db.query("select id, username, baby_id, relationship from Poster " +
-			" where name=? and password=?",
-     		[user.name, user.password],
+			" where username=? and password=?",
+     		[user.username, user.password],
      		function(err, results) {
       			if (err) return callback(err);
       			callback(null, results[0]);

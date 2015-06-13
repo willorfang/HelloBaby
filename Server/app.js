@@ -26,7 +26,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+// get user info 
 app.get('/users/:user_id', user.getUserInfo);
+// user login
+app.post('/login', user.login);
 // new a post
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
 // get posts about a baby
@@ -34,7 +37,7 @@ app.get('/babies/:baby_id/posts', post.listPostsAboutBaby);
 // new a baby
 app.post('/babies', [ multer({ dest: path.join(__dirname, "public/img/avatar")}), baby.register]);
 // get info of a baby
-app.get('/babies/:baby_id', baby.info);
+app.get('/babies/:baby_id', baby.getInfoByID);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

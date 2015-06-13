@@ -27,7 +27,7 @@ exports.register = function(req, res, next) {
 };
 
 // /babies/123456
-exports.info = function(req, res, next) {
+exports.getInfoByID = function(req, res, next) {
 	var baby_id = parseInt(req.params.baby_id);
 	var baby = new Baby({
 		"id": baby_id
