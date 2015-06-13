@@ -28,5 +28,5 @@ typedef NS_ENUM(NSUInteger, RelationshipType) {
 +(NSString*) getRelationshipName:(RelationshipType)type;
 +(NSDate*) getDateFromUTC:(NSString*)time;
 +(UserData*) sharedUser;
-
++(BOOL) loginWithName:(NSString*)username password:(NSString*)password;
 @end

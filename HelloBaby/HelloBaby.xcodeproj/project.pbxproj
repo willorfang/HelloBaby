@@ -31,6 +31,7 @@
 		AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */; };
 		AED4536D1B20A9930050AA08 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4536C1B20A9930050AA08 /* UserData.m */; };
 		AED453701B242B770050AA08 /* BabyData.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4536F1B242B770050AA08 /* BabyData.m */; };
+		AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AED453721B2BFECB0050AA08 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		AED4536C1B20A9930050AA08 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		AED4536E1B242B770050AA08 /* BabyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyData.h; sourceTree = "<group>"; };
 		AED4536F1B242B770050AA08 /* BabyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyData.m; sourceTree = "<group>"; };
+		AED453711B2BFECB0050AA08 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		AED453721B2BFECB0050AA08 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */,
 				AE0F6FA41AFE03EB006F09D4 /* MainViewController.h */,
 				AE0F6FA51AFE03EB006F09D4 /* MainViewController.m */,
+				AED453711B2BFECB0050AA08 /* LoginViewController.h */,
+				AED453721B2BFECB0050AA08 /* LoginViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */,
 				AE0F6FA31AFE03EB006F09D4 /* AppDelegate.m in Sources */,
 				AED453701B242B770050AA08 /* BabyData.m in Sources */,
+				AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */,
 				AE0F6FA61AFE03EB006F09D4 /* MainViewController.m in Sources */,
 				AE0F6FA01AFE03EB006F09D4 /* main.m in Sources */,
 				AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */,
