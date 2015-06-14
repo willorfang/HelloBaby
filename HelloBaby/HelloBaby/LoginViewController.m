@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)login:(id)sender;
 - (IBAction)signUp:(id)sender;
@@ -24,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _usernameTextField.delegate = self;
+    _passwordField.delegate = self;
     [_usernameTextField becomeFirstResponder];
 }
 
@@ -46,6 +49,23 @@
     NSString* username = _usernameTextField.text;
     NSString* password = _passwordField.text;
     [UserData loginWithName:username password:password];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, set focus.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, remove keyboard.
+        [textField resignFirstResponder];
+        // login
+        [_loginButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
+    return NO; // Do not insert line-breaks.
 }
 
 - (IBAction)signUp:(id)sender {

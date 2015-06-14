@@ -187,13 +187,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mom1" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="gh9-Kr-vTD">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mom1" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="gh9-Kr-vTD">
                                 <rect key="frame" x="69" y="253" width="183" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0RQ-nB-BVj">
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0RQ-nB-BVj">
                                 <rect key="frame" x="69" y="297" width="183" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.34898372534656596" green="0.85263978792755668" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -212,7 +212,7 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NtD-zE-SFL">
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NtD-zE-SFL">
                                 <rect key="frame" x="69" y="443" width="183" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.34898372529999999" green="0.85263978789999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,6 +227,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="0RQ-nB-BVj" id="KdD-Y8-hAV"/>
                         <outlet property="passwordField" destination="gh9-Kr-vTD" id="6zx-i2-4kF"/>
                         <outlet property="usernameTextField" destination="NTO-m5-Nks" id="9w4-d5-fkZ"/>
                     </connections>
