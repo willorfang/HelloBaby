@@ -45,7 +45,7 @@
 {
     static const CGFloat spacing = 5;
     CGFloat originY = 0;
-    //
+    // content
     if ([data.postMsg length] > 0) {
         _postLabel.text = data.postMsg;
         [_postLabel sizeToFit];
@@ -59,7 +59,7 @@
                                         0,
                                         0)];
     }
-    //
+    // image
     if (data.postImage) {
         _postImage.contentMode = UIViewContentModeScaleAspectFit;
         [_postImage setImage:data.postImage];
@@ -75,7 +75,7 @@
                                         0,
                                         0)];
     }
-    //
+    // status
     _postStatus.text = [data getStatusString];
     originY += _postImage.frame.size.height + spacing;
     [_postStatus setFrame:CGRectMake(_postStatus.frame.origin.x,
@@ -90,7 +90,10 @@
                                      originY,
                                      _commentButton.frame.size.width,
                                      _commentButton.frame.size.height)];
-    //
+    // good
+    [_likeButton setTitle:[NSString stringWithFormat:@"%ld", (long)data.likeNum] forState:UIControlStateNormal];
+    
+    // comment
     _commentArray = data.commentArray;
     originY += _likeButton.frame.size.height + spacing;
     [_commentTableView reloadData];
