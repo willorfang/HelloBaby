@@ -24,9 +24,10 @@ exports.getUserInfo = function(req, res, next) {
 	});
 };
 
-// /users/login
+// /login
 exports.login = function(req, res, next) {
 	var data = req.body;
+	// console.log(data);
 
 	var user = new User({
 		"username": data.username,

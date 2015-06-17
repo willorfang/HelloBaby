@@ -25,6 +25,19 @@ exports.newRecord = function(req, res, next) {
 	});
 };
 
+exports.newComment = function(req, res, next) {
+	var data = req.body;
+
+	var post = new Post({
+		"id": data.record_id
+	});
+
+	post.postComment(data.poster_id, data.content, function(err) {
+		if (err) return next(err);
+		res.send('OK');
+	})
+};
+
 // /babies/123456/posts?num=2
 exports.listPostsAboutBaby = function(req, res, next) {
 	var baby_id = parseInt(req.params.baby_id);

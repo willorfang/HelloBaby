@@ -11,6 +11,7 @@
 
 @interface PostTableCell : UIView<UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray* _commentArray;
+    PostData* _data;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *postLabel;
@@ -23,6 +24,9 @@
 + (instancetype)view;
 + (CGFloat)margin;
 - (id) fillWithData:(PostData*)data;
+- (void) reload;
 - (NSString*) getCommentStringForIndex:(NSInteger)index;
+- (IBAction)goodClicked:(id)sender;
+- (IBAction)commentClicked:(id)sender;
 
 @end

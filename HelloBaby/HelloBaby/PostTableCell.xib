@@ -39,12 +39,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <state key="normal" image="comment.png"/>
+                    <connections>
+                        <action selector="commentClicked:" destination="ftP-eH-HWL" eventType="touchUpInside" id="w3f-jc-Rbh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="F93-HY-1om">
                     <rect key="frame" x="214" y="258" width="44" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <state key="normal" image="like.png"/>
+                    <connections>
+                        <action selector="goodClicked:" destination="ftP-eH-HWL" eventType="touchUpInside" id="I5p-pU-Fls"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

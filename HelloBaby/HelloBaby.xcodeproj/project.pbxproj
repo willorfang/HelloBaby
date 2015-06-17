@@ -13,19 +13,15 @@
 		AE0F6FA91AFE03EB006F09D4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FA81AFE03EB006F09D4 /* SecondViewController.m */; };
 		AE0F6FAC1AFE03EB006F09D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */; };
 		AE0F6FAE1AFE03EB006F09D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FAD1AFE03EB006F09D4 /* Images.xcassets */; };
-		AE0F6FB11AFE03EB006F09D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FAF1AFE03EB006F09D4 /* LaunchScreen.xib */; };
 		AE0F6FBD1AFE03EB006F09D4 /* HelloBabyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FBC1AFE03EB006F09D4 /* HelloBabyTests.m */; };
 		AE0F6FC71AFE4D26006F09D4 /* PostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */; };
 		AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */; };
 		AE0F6FD41AFE5B11006F09D4 /* PostData.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FD31AFE5B11006F09D4 /* PostData.m */; };
 		AE0F6FEE1AFE6863006F09D4 /* baby.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE61AFE6863006F09D4 /* baby.png */; };
-		AE0F6FEF1AFE6863006F09D4 /* baby1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE71AFE6863006F09D4 /* baby1.jpg */; };
-		AE0F6FF01AFE6863006F09D4 /* baby2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE81AFE6863006F09D4 /* baby2.jpg */; };
 		AE0F6FF11AFE6863006F09D4 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE91AFE6863006F09D4 /* comment.png */; };
 		AE0F6FF21AFE6863006F09D4 /* default_avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FEA1AFE6863006F09D4 /* default_avatar.jpg */; };
 		AE0F6FF31AFE6863006F09D4 /* default_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FEB1AFE6863006F09D4 /* default_background.jpg */; };
 		AE0F6FF41AFE6863006F09D4 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FEC1AFE6863006F09D4 /* like.png */; };
-		AE0F6FF51AFE6863006F09D4 /* post_record.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FED1AFE6863006F09D4 /* post_record.jpeg */; };
 		AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */; };
 		AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */; };
 		AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */; };
@@ -56,7 +52,6 @@
 		AE0F6FA81AFE03EB006F09D4 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		AE0F6FAB1AFE03EB006F09D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE0F6FAD1AFE03EB006F09D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AE0F6FB01AFE03EB006F09D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AE0F6FB61AFE03EB006F09D4 /* HelloBabyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloBabyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0F6FBB1AFE03EB006F09D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0F6FBC1AFE03EB006F09D4 /* HelloBabyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloBabyTests.m; sourceTree = "<group>"; };
@@ -66,13 +61,10 @@
 		AE0F6FD21AFE5B11006F09D4 /* PostData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostData.h; sourceTree = "<group>"; };
 		AE0F6FD31AFE5B11006F09D4 /* PostData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostData.m; sourceTree = "<group>"; };
 		AE0F6FE61AFE6863006F09D4 /* baby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baby.png; path = res/baby.png; sourceTree = "<group>"; };
-		AE0F6FE71AFE6863006F09D4 /* baby1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = baby1.jpg; path = res/baby1.jpg; sourceTree = "<group>"; };
-		AE0F6FE81AFE6863006F09D4 /* baby2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = baby2.jpg; path = res/baby2.jpg; sourceTree = "<group>"; };
 		AE0F6FE91AFE6863006F09D4 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = comment.png; path = res/comment.png; sourceTree = "<group>"; };
 		AE0F6FEA1AFE6863006F09D4 /* default_avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default_avatar.jpg; path = res/default_avatar.jpg; sourceTree = "<group>"; };
 		AE0F6FEB1AFE6863006F09D4 /* default_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default_background.jpg; path = res/default_background.jpg; sourceTree = "<group>"; };
 		AE0F6FEC1AFE6863006F09D4 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = like.png; path = res/like.png; sourceTree = "<group>"; };
-		AE0F6FED1AFE6863006F09D4 /* post_record.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = post_record.jpeg; path = res/post_record.jpeg; sourceTree = "<group>"; };
 		AE0F6FF71AFFC1FD006F09D4 /* PostNewItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNewItemViewController.h; sourceTree = "<group>"; };
 		AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNewItemViewController.m; sourceTree = "<group>"; };
 		AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cancel.png; path = res/cancel.png; sourceTree = "<group>"; };
@@ -124,13 +116,13 @@
 		AE0F6F9C1AFE03EB006F09D4 /* HelloBaby */ = {
 			isa = PBXGroup;
 			children = (
-				AE0F6FD51AFE67F2006F09D4 /* References */,
-				AE0F6FCE1AFE53ED006F09D4 /* PostListItem */,
+				AE0F6FCE1AFE53ED006F09D4 /* Models */,
 				AE0F6FCD1AFE53D8006F09D4 /* Views */,
+				AED453741B31AA8F0050AA08 /* Controllers */,
 				AE0F6FA11AFE03EB006F09D4 /* AppDelegate.h */,
 				AE0F6FA21AFE03EB006F09D4 /* AppDelegate.m */,
 				AE0F6FAD1AFE03EB006F09D4 /* Images.xcassets */,
-				AE0F6FAF1AFE03EB006F09D4 /* LaunchScreen.xib */,
+				AE0F6FD51AFE67F2006F09D4 /* References */,
 				AE0F6F9D1AFE03EB006F09D4 /* Supporting Files */,
 			);
 			path = HelloBaby;
@@ -165,25 +157,17 @@
 		AE0F6FCD1AFE53D8006F09D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AE0F6FF71AFFC1FD006F09D4 /* PostNewItemViewController.h */,
-				AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */,
-				AE0F6FA71AFE03EB006F09D4 /* SecondViewController.h */,
-				AE0F6FA81AFE03EB006F09D4 /* SecondViewController.m */,
+				AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */,
+				AE0F6FCF1AFE57BA006F09D4 /* PostTableCell.h */,
+				AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */,
 				AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */,
-				AE0F6FA41AFE03EB006F09D4 /* MainViewController.h */,
-				AE0F6FA51AFE03EB006F09D4 /* MainViewController.m */,
-				AED453711B2BFECB0050AA08 /* LoginViewController.h */,
-				AED453721B2BFECB0050AA08 /* LoginViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		AE0F6FCE1AFE53ED006F09D4 /* PostListItem */ = {
+		AE0F6FCE1AFE53ED006F09D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */,
-				AE0F6FCF1AFE57BA006F09D4 /* PostTableCell.h */,
-				AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */,
 				AE0F6FD21AFE5B11006F09D4 /* PostData.h */,
 				AE0F6FD31AFE5B11006F09D4 /* PostData.m */,
 				AED4536B1B20A9930050AA08 /* UserData.h */,
@@ -191,7 +175,7 @@
 				AED4536E1B242B770050AA08 /* BabyData.h */,
 				AED4536F1B242B770050AA08 /* BabyData.m */,
 			);
-			name = PostListItem;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		AE0F6FD51AFE67F2006F09D4 /* References */ = {
@@ -200,15 +184,27 @@
 				AE0F6FFE1AFFC8AE006F09D4 /* add_image.png */,
 				AE0F6FFC1AFFC6DA006F09D4 /* cancel.png */,
 				AE0F6FE61AFE6863006F09D4 /* baby.png */,
-				AE0F6FE71AFE6863006F09D4 /* baby1.jpg */,
-				AE0F6FE81AFE6863006F09D4 /* baby2.jpg */,
 				AE0F6FE91AFE6863006F09D4 /* comment.png */,
 				AE0F6FEA1AFE6863006F09D4 /* default_avatar.jpg */,
 				AE0F6FEB1AFE6863006F09D4 /* default_background.jpg */,
 				AE0F6FEC1AFE6863006F09D4 /* like.png */,
-				AE0F6FED1AFE6863006F09D4 /* post_record.jpeg */,
 			);
 			name = References;
+			sourceTree = "<group>";
+		};
+		AED453741B31AA8F0050AA08 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AE0F6FA41AFE03EB006F09D4 /* MainViewController.h */,
+				AE0F6FA51AFE03EB006F09D4 /* MainViewController.m */,
+				AED453711B2BFECB0050AA08 /* LoginViewController.h */,
+				AED453721B2BFECB0050AA08 /* LoginViewController.m */,
+				AE0F6FF71AFFC1FD006F09D4 /* PostNewItemViewController.h */,
+				AE0F6FF81AFFC1FD006F09D4 /* PostNewItemViewController.m */,
+				AE0F6FA71AFE03EB006F09D4 /* SecondViewController.h */,
+				AE0F6FA81AFE03EB006F09D4 /* SecondViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +287,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0F6FF51AFE6863006F09D4 /* post_record.jpeg in Resources */,
 				AE0F6FC71AFE4D26006F09D4 /* PostTableCell.xib in Resources */,
 				AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */,
 				AE0F6FF11AFE6863006F09D4 /* comment.png in Resources */,
@@ -299,10 +294,7 @@
 				AE0F6FF31AFE6863006F09D4 /* default_background.jpg in Resources */,
 				AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */,
 				AE0F6FAC1AFE03EB006F09D4 /* Main.storyboard in Resources */,
-				AE0F6FF01AFE6863006F09D4 /* baby2.jpg in Resources */,
-				AE0F6FEF1AFE6863006F09D4 /* baby1.jpg in Resources */,
 				AE0F6FF21AFE6863006F09D4 /* default_avatar.jpg in Resources */,
-				AE0F6FB11AFE03EB006F09D4 /* LaunchScreen.xib in Resources */,
 				AE0F6FAE1AFE03EB006F09D4 /* Images.xcassets in Resources */,
 				AE0F6FF41AFE6863006F09D4 /* like.png in Resources */,
 			);
@@ -360,14 +352,6 @@
 				AE0F6FAB1AFE03EB006F09D4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AE0F6FAF1AFE03EB006F09D4 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AE0F6FB01AFE03EB006F09D4 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

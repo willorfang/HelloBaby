@@ -36,7 +36,9 @@
 
 static NSString* kServerURL = @"http://localhost:3000";
 
--(void) requestPostsAboutBaby:(NSInteger)baby_id pageNum:(NSInteger)num updateHandler:(update_handler_t)handler
+-(void) requestPostsAboutBaby:(NSInteger)baby_id
+                      pageNum:(NSInteger)num
+                updateHandler:(update_handler_t)handler
 {
     // async request
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -100,6 +102,7 @@ static NSString* kServerURL = @"http://localhost:3000";
             data.relationship = [[item valueForKey:@"relationship"] integerValue];
             data.postTime = [PostData getTimeFromUTC:[item valueForKey:@"time"]];
             data.likeNum = [[item valueForKey:@"goodNum"] integerValue];
+            data.postID = [[item valueForKey:@"id"] integerValue];
             //
             [postDataArray addObject:data];
         }
@@ -112,7 +115,12 @@ static NSString* kServerURL = @"http://localhost:3000";
     });
 }
 
-- (void) postAboutBaby:(NSInteger)baby_id byUser:(NSInteger)user_id withMessage:(NSString *)msg AndImage:(UIImage *)image atTime:(NSString*)timestamp completeHandler:(empty_handler_t)handler
+- (void) postAboutBaby:(NSInteger)baby_id
+                byUser:(NSInteger)user_id
+           withMessage:(NSString *)msg
+              AndImage:(UIImage *)image
+                atTime:(NSString*)timestamp
+       completeHandler:(empty_handler_t)handler
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -170,6 +178,38 @@ static NSString* kServerURL = @"http://localhost:3000";
         handler();
     });
 
+}
+
+-(void) addCommentToPost:(NSInteger)record_id
+                  byUser:(NSInteger)user_id
+             withMessage:(NSString*)content
+         completeHandler:(empty_handler_t)handler
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString* url = [NSString stringWithFormat:@"%@/comments", kServerURL];
+        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: url]];
+        [request setHTTPMethod:@"POST"];
+        NSDictionary* dict = [NSDictionary dictionaryWithObjects:@[[NSNumber numberWithInteger:record_id],
+                                                                   [NSNumber numberWithInteger:user_id],
+                                                                   content]
+                                                         forKeys:@[@"record_id", @"poster_id", @"content"]];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSError *error;
+        NSData* body = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+        [request setHTTPBody:body];
+        
+        NSHTTPURLResponse *response;
+        // request
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (error) {
+            NSLog(@"REQUEST failed: %@", url);
+            return;
+        }
+        
+        // complete handler
+        handler();
+    });
 }
 
 @end

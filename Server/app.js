@@ -30,6 +30,8 @@ app.use('/', routes);
 app.get('/users/:user_id', user.getUserInfo);
 // user login
 app.post('/login', user.login);
+// new a comment
+app.post('/comments', post.newComment);
 // new a post
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
 // get posts about a baby

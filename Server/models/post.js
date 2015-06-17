@@ -72,6 +72,19 @@ Post.prototype.getCommentsByID = function(callback) {
 };
 
 // required: record id
+Post.prototype.postComment = function(poster_id, content, callback) {
+	var post = this;
+	db.query("insert into Comment (content, record_id, poster_id) " +
+			" values(?, ?, ?)",
+			[content, post.id, poster_id],
+			function(err, results) {
+      			if (err) return callback(err);
+      			callback(null, results[0]);
+      		}
+	);
+};
+
+// required: record id
 Post.prototype.getGoodsByID = function(callback) {
 	var post = this;
 	db.query("select count(*) as count " +

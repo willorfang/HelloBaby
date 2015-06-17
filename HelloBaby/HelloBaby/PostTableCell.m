@@ -7,6 +7,8 @@
 //
 
 #import "PostTableCell.h"
+#import "PostData.h"
+#import "UserData.h"
 
 @implementation PostTableCell
 
@@ -43,11 +45,18 @@
 
 - (id) fillWithData:(PostData *)data
 {
+    _data = data;
+    [self reload];
+    return self;
+}
+
+- (void) reload
+{
     static const CGFloat spacing = 5;
     CGFloat originY = 0;
     // content
-    if ([data.postMsg length] > 0) {
-        _postLabel.text = data.postMsg;
+    if ([_data.postMsg length] > 0) {
+        _postLabel.text = _data.postMsg;
         [_postLabel sizeToFit];
         [_postLabel setFrame:CGRectMake(_postLabel.frame.origin.x,
                                         originY,
@@ -60,9 +69,9 @@
                                         0)];
     }
     // image
-    if (data.postImage) {
+    if (_data.postImage) {
         _postImage.contentMode = UIViewContentModeScaleAspectFit;
-        [_postImage setImage:data.postImage];
+        [_postImage setImage:_data.postImage];
         originY +=  _postLabel.frame.size.height + spacing;
         [_postImage setFrame:CGRectMake(_postImage.frame.origin.x,
                                         originY,
@@ -76,7 +85,7 @@
                                         0)];
     }
     // status
-    _postStatus.text = [data getStatusString];
+    _postStatus.text = [_data getStatusString];
     originY += _postImage.frame.size.height + spacing;
     [_postStatus setFrame:CGRectMake(_postStatus.frame.origin.x,
                                     originY,
@@ -91,10 +100,10 @@
                                      _commentButton.frame.size.width,
                                      _commentButton.frame.size.height)];
     // good
-    [_likeButton setTitle:[NSString stringWithFormat:@"%ld", (long)data.likeNum] forState:UIControlStateNormal];
+    [_likeButton setTitle:[NSString stringWithFormat:@"%ld", (long)_data.likeNum] forState:UIControlStateNormal];
     
     // comment
-    _commentArray = data.commentArray;
+    _commentArray = _data.commentArray;
     originY += _likeButton.frame.size.height + spacing;
     [_commentTableView reloadData];
     [_commentTableView setFrame: CGRectMake(_commentTableView.frame.origin.x,
@@ -104,8 +113,6 @@
     //
     originY += _commentTableView.frame.size.height + spacing;
     [self setBounds:CGRectMake(0, 0, self.bounds.size.width, originY)];
-    
-    return self;
 }
 
 #pragma -- TableView Datasource
@@ -120,6 +127,26 @@
     CommentData* commentData = (CommentData*) [_commentArray objectAtIndex:index];
     NSString* commentStr = [NSString stringWithFormat:@"%@:%@", commentData.username, commentData.content];
     return commentStr;
+}
+
+- (IBAction)goodClicked:(id)sender {
+}
+
+- (IBAction)commentClicked:(id)sender {
+    NSInteger user_id = [[UserData sharedUser] user_id];
+    NSInteger record_id = _data.postID;
+    NSString* content = @"bbbbbbbbbbbbbb";
+    PostDataRequest* req = [[PostDataRequest alloc] init];
+    [req addCommentToPost:record_id byUser:user_id withMessage:content completeHandler:^{
+        NSLog(@"Comment added.");
+        CommentData* commentData = [[CommentData alloc] init];
+        commentData.content = content;
+        commentData.username = [[UserData sharedUser] username];
+        [_data.commentArray addObject:commentData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reload];
+        });
+    }];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
