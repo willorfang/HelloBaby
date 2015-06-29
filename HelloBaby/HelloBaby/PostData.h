@@ -9,7 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CommentData : NSObject
+@interface CommentDataForPost : NSObject
+
+@property (nonatomic) NSInteger record_id;
+@property (nonatomic) NSInteger poster_id;
+@property (nonatomic) NSInteger order;
+@property (strong, nonatomic) NSString* content;
+
+@end
+
+@interface CommentDataForShow : NSObject
 
 @property (strong, nonatomic) NSString* username;
 @property (strong, nonatomic) NSString* content;

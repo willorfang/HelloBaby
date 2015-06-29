@@ -46,6 +46,58 @@ static NSString* identifier = @"post-cell";
             [self reloadPostViews];
         });
     }];
+    
+    //
+    _hiddenField = [[UITextField alloc] init];
+    [self.view addSubview:_hiddenField];
+    _hiddenField.delegate = self;
+    // add input view for comment
+    _inputBar = [InputBar view];
+    _hiddenField.inputAccessoryView = _inputBar;
+    
+    // notifications
+    _commentToPost = [[CommentDataForPost alloc] init];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(commentButtonClicked:) name:kNotificationCommentButtonClicked object:nil];
+    [nc addObserver:self
+           selector:@selector(commentSendClicked:) name:kNotificationCommentSendClicked object:nil];
+}
+
+-(void)commentButtonClicked:(NSNotification*)notification
+{
+    // show keyboard
+    _hiddenField.userInteractionEnabled = YES;
+    [_hiddenField becomeFirstResponder];
+    // data
+    _commentToPost.record_id = [[[notification userInfo] objectForKey:@"record_id"] integerValue];
+    _commentToPost.poster_id = [[[notification userInfo] objectForKey:@"poster_id"] integerValue];
+    _commentToPost.order = [[[notification userInfo] objectForKey:@"order"] integerValue];
+}
+
+-(void)commentSendClicked:(NSNotification*)notification
+{
+    // hide keyboard
+    _hiddenField.userInteractionEnabled = NO;
+    [_hiddenField resignFirstResponder];
+    //data
+    _commentToPost.content = [[notification userInfo] objectForKey:@"content"];
+    // send to server
+    PostDataRequest* req = [[PostDataRequest alloc] init];
+    [req addCommentToPost:_commentToPost.record_id
+                   byUser:_commentToPost.poster_id
+              withMessage:_commentToPost.content completeHandler:^{
+        NSLog(@"Comment added.");
+        CommentDataForShow* commentData = [[CommentDataForShow alloc] init];
+        commentData.content = _commentToPost.content;
+        commentData.username = [[UserData sharedUser] username];
+        PostData* postData = [_postDataArray objectAtIndex:_commentToPost.order];
+        [postData.commentArray addObject:commentData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadPostViews];
+        });
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,9 +116,11 @@ static NSString* identifier = @"post-cell";
     [_postViewArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _postViewArray = [[NSMutableArray alloc] init];
     
+    int index = 0;
     for (id item in _postDataArray) {
         PostData* postData = (PostData*)item;
         PostTableCell* cell = [[PostTableCell view] fillWithData:postData];
+        cell.order = index++;
         //
         cell.frame = CGRectMake(margin, originY, cell.frame.size.width, cell.frame.size.height);
         [_scrollView addSubview:cell];

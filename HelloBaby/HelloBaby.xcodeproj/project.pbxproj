@@ -28,6 +28,8 @@
 		AED4536D1B20A9930050AA08 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4536C1B20A9930050AA08 /* UserData.m */; };
 		AED453701B242B770050AA08 /* BabyData.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4536F1B242B770050AA08 /* BabyData.m */; };
 		AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AED453721B2BFECB0050AA08 /* LoginViewController.m */; };
+		AED453791B31C9940050AA08 /* InputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AED453781B31C9940050AA08 /* InputBar.m */; };
+		AED4537B1B31C9A90050AA08 /* InputBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED4537A1B31C9A90050AA08 /* InputBar.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,9 @@
 		AED4536F1B242B770050AA08 /* BabyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyData.m; sourceTree = "<group>"; };
 		AED453711B2BFECB0050AA08 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AED453721B2BFECB0050AA08 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AED453771B31C9940050AA08 /* InputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBar.h; sourceTree = "<group>"; };
+		AED453781B31C9940050AA08 /* InputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputBar.m; sourceTree = "<group>"; };
+		AED4537A1B31C9A90050AA08 /* InputBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,9 @@
 				AE0F6FCF1AFE57BA006F09D4 /* PostTableCell.h */,
 				AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */,
 				AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */,
+				AED453771B31C9940050AA08 /* InputBar.h */,
+				AED453781B31C9940050AA08 /* InputBar.m */,
+				AED4537A1B31C9A90050AA08 /* InputBar.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 				AE0F6FF31AFE6863006F09D4 /* default_background.jpg in Resources */,
 				AE0F6FFD1AFFC6DA006F09D4 /* cancel.png in Resources */,
 				AE0F6FAC1AFE03EB006F09D4 /* Main.storyboard in Resources */,
+				AED4537B1B31C9A90050AA08 /* InputBar.xib in Resources */,
 				AE0F6FF21AFE6863006F09D4 /* default_avatar.jpg in Resources */,
 				AE0F6FAE1AFE03EB006F09D4 /* Images.xcassets in Resources */,
 				AE0F6FF41AFE6863006F09D4 /* like.png in Resources */,
@@ -317,6 +326,7 @@
 				AE0F6FA91AFE03EB006F09D4 /* SecondViewController.m in Sources */,
 				AE0F6FFA1AFFC1FD006F09D4 /* PostNewItemViewController.m in Sources */,
 				AE0F6FA31AFE03EB006F09D4 /* AppDelegate.m in Sources */,
+				AED453791B31C9940050AA08 /* InputBar.m in Sources */,
 				AED453701B242B770050AA08 /* BabyData.m in Sources */,
 				AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */,
 				AE0F6FA61AFE03EB006F09D4 /* MainViewController.m in Sources */,

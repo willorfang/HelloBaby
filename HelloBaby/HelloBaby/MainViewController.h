@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PostData.h"
+#import "InputBar.h"
 
 @interface MainViewController : UIViewController {
     PostDataRequest* _request;
     NSMutableArray* _postDataArray;
     CGFloat _startY;
     NSMutableArray* _postViewArray;
+    // to input comment
+    UITextField* _hiddenField;
+    InputBar* _inputBar;
+    // comment to post
+    CommentDataForPost* _commentToPost;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -25,5 +31,9 @@
 
 - (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue;
 - (void)updateWithAddPostData:(PostData*)data;
+
+-(void)commentButtonClicked:(NSNotification*)notification;
+-(void)commentSendClicked:(NSNotification*)notification;
+    
 @end
 

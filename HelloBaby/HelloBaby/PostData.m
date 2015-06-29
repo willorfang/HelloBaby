@@ -9,7 +9,11 @@
 #import "PostData.h"
 #import "UserData.h"
 
-@implementation CommentData
+@implementation CommentDataForPost
+
+@end
+
+@implementation CommentDataForShow
 
 @end
 
@@ -94,7 +98,7 @@ static NSString* kServerURL = @"http://localhost:3000";
             }
             data.commentArray = [[NSMutableArray alloc] init];
             for (NSDictionary* commentItem in [item valueForKey:@"comments"]) {
-                CommentData* commentData = [[CommentData alloc] init];
+                CommentDataForShow* commentData = [[CommentDataForShow alloc] init];
                 commentData.username = [commentItem valueForKey:@"username"];
                 commentData.content = [commentItem valueForKey:@"content"];
                 [data.commentArray addObject:commentData];

@@ -10,6 +10,8 @@
 #import "PostData.h"
 #import "UserData.h"
 
+NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
+
 @implementation PostTableCell
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -115,6 +117,23 @@
     [self setBounds:CGRectMake(0, 0, self.bounds.size.width, originY)];
 }
 
+- (IBAction)goodClicked:(id)sender {
+}
+
+- (IBAction)commentClicked:(id)sender {
+    // show keyboard
+    NSNumber* poster_id = [NSNumber numberWithInteger:[[UserData sharedUser] user_id]];
+    NSNumber* record_id = [NSNumber numberWithInteger:_data.postID];
+    NSNumber* order = [NSNumber numberWithInteger:self.order];
+    NSDictionary *info = [NSDictionary dictionaryWithObjects:@[poster_id, record_id, order, @""]
+                                                     forKeys:@[@"poster_id", @"record_id", @"order", @"content"]];
+    NSNotification *notification = [NSNotification notificationWithName:kNotificationCommentButtonClicked
+                                      object:self
+                                    userInfo:info];
+    
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
 #pragma -- TableView Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -124,30 +143,11 @@
 
 - (NSString*) getCommentStringForIndex:(NSInteger)index
 {
-    CommentData* commentData = (CommentData*) [_commentArray objectAtIndex:index];
+    CommentDataForShow* commentData = (CommentDataForShow*) [_commentArray objectAtIndex:index];
     NSString* commentStr = [NSString stringWithFormat:@"%@:%@", commentData.username, commentData.content];
     return commentStr;
 }
 
-- (IBAction)goodClicked:(id)sender {
-}
-
-- (IBAction)commentClicked:(id)sender {
-    NSInteger user_id = [[UserData sharedUser] user_id];
-    NSInteger record_id = _data.postID;
-    NSString* content = @"bbbbbbbbbbbbbb";
-    PostDataRequest* req = [[PostDataRequest alloc] init];
-    [req addCommentToPost:record_id byUser:user_id withMessage:content completeHandler:^{
-        NSLog(@"Comment added.");
-        CommentData* commentData = [[CommentData alloc] init];
-        commentData.content = content;
-        commentData.username = [[UserData sharedUser] username];
-        [_data.commentArray addObject:commentData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self reload];
-        });
-    }];
-}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
