@@ -38,6 +38,24 @@ exports.newComment = function(req, res, next) {
 	})
 };
 
+exports.addGood = function(req, res, next) {
+	var data = req.body;
+
+	var post = new Post({
+		"id": data.record_id
+	});
+
+	post.postGood(data.poster_id, function(err) {
+		var result = {};
+		if (err) {
+			result.status = false;
+		} else {
+			result.status = true;
+		}
+		res.send(JSON.stringify(result, null, 4));
+	})
+};
+
 // /babies/123456/posts?num=2
 exports.listPostsAboutBaby = function(req, res, next) {
 	var baby_id = parseInt(req.params.baby_id);

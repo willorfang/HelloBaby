@@ -84,6 +84,18 @@ Post.prototype.postComment = function(poster_id, content, callback) {
 	);
 };
 
+Post.prototype.postGood = function(poster_id, callback) {
+	var post = this;
+	db.query("insert into Good (record_id, poster_id) " +
+			" values(?, ?)",
+			[post.id, poster_id],
+			function(err, results) {
+      			if (err) return callback(err);
+      			callback(null, results[0]);
+      		}
+	);
+};
+
 // required: record id
 Post.prototype.getGoodsByID = function(callback) {
 	var post = this;

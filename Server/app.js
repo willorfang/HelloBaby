@@ -32,6 +32,8 @@ app.get('/users/:user_id', user.getUserInfo);
 app.post('/login', user.login);
 // new a comment
 app.post('/comments', post.newComment);
+// add a good
+app.post('/goods', post.addGood);
 // new a post
 app.post('/posts', [ multer({ dest: path.join(__dirname, "public/img/post")}), post.newRecord ]);
 // get posts about a baby
