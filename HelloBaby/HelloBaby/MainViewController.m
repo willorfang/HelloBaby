@@ -50,7 +50,6 @@ static NSString* identifier = @"post-cell";
     //
     _hiddenField = [[UITextField alloc] init];
     [self.view addSubview:_hiddenField];
-    _hiddenField.delegate = self;
     // add input view for comment
     _inputBar = [InputBar view];
     _hiddenField.inputAccessoryView = _inputBar;
@@ -80,6 +79,7 @@ static NSString* identifier = @"post-cell";
     // hide keyboard
     _hiddenField.userInteractionEnabled = NO;
     [_hiddenField resignFirstResponder];
+    [self.view endEditing:YES];
     //data
     _commentToPost.content = [[notification userInfo] objectForKey:@"content"];
     // send to server
