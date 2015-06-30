@@ -24,6 +24,13 @@ static NSString* identifier = @"post-cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _scrollView.delegate = self;
+    
+    _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activityView.center = self.view.center;
+    [self.view addSubview: _activityView];
+    
     // init user info
     UserData* user = [UserData sharedUser];
     
@@ -38,10 +45,12 @@ static NSString* identifier = @"post-cell";
     
     // prepare the post data here
     _request = [[PostDataRequest alloc] init];
-    [_request requestPostsAboutBaby:user.baby.id pageNum:0 updateHandler:^(NSMutableArray *data) {
+    _nextPageNum = 0;
+    [_request requestPostsAboutBaby:user.baby.id pageNum:_nextPageNum updateHandler:^(NSMutableArray *data) {
         _postDataArray = data;
         dispatch_async(dispatch_get_main_queue(), ^{
             // create post views
+            ++_nextPageNum;
             _startY = _backgroundImageView.frame.origin.y + _backgroundImageView.frame.size.height;
             [self reloadPostViews];
         });
@@ -105,6 +114,42 @@ static NSString* identifier = @"post-cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma -- UIScrollViewDelegate
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentSize.height > scrollView.frame.size.height) {
+        CGFloat offsetY = scrollView.contentOffset.y;
+        CGFloat scrollHeight = scrollView.frame.size.height;
+        CGFloat bottomInset = scrollView.contentInset.bottom;
+        CGFloat bottomScrollY = offsetY + scrollHeight - bottomInset;
+        CGFloat fuzzFactor = 20;
+        CGFloat boundary = scrollView.contentSize.height - fuzzFactor;
+        if (bottomScrollY >= boundary) {
+            NSLog(@"Scrolled to the bottom");
+            //
+            [_activityView startAnimating];
+            
+            // request more contents HERE
+            UserData* user = [UserData sharedUser];
+            PostDataRequest* request = [[PostDataRequest alloc] init];
+            // TODO: change pageNum to _nextPageNum
+            [request requestPostsAboutBaby:user.baby.id pageNum:0 updateHandler:^(NSMutableArray *data) {
+                [_postDataArray addObjectsFromArray:data];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // create post views
+                    ++_nextPageNum;
+                    // TODO: no sleep
+                    [NSThread sleepForTimeInterval:2];
+                    [_activityView stopAnimating];
+                    [self reloadPostViews];
+                });
+            }];
+        }
+    }
+}
+
 
 #pragma -- create post views
 

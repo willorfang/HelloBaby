@@ -10,9 +10,10 @@
 #import "PostData.h"
 #import "InputBar.h"
 
-@interface MainViewController : UIViewController {
+@interface MainViewController : UIViewController<UIScrollViewDelegate> {
     PostDataRequest* _request;
     NSMutableArray* _postDataArray;
+    // position to add new posts
     CGFloat _startY;
     NSMutableArray* _postViewArray;
     // to input comment
@@ -20,6 +21,10 @@
     InputBar* _inputBar;
     // comment to post
     CommentDataForPost* _commentToPost;
+    // next pageNum to request
+    NSInteger _nextPageNum;
+    // activity view
+    UIActivityIndicatorView* _activityView;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
