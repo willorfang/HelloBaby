@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+var response = require('./util').response;
 
 exports.newRecord = function(req, res, next) {
 	var data = req.body.record;
@@ -20,8 +21,7 @@ exports.newRecord = function(req, res, next) {
 	// console.log(post);
 
 	post.newRecord(function(err) {
-		if (err) return next(err);
-		res.send('OK');
+		response(res, err, null);
 	});
 };
 
@@ -33,8 +33,7 @@ exports.newComment = function(req, res, next) {
 	});
 
 	post.postComment(data.poster_id, data.content, function(err) {
-		if (err) return next(err);
-		res.send('OK');
+		response(res, err, null);
 	})
 };
 
@@ -46,13 +45,7 @@ exports.addGood = function(req, res, next) {
 	});
 
 	post.postGood(data.poster_id, function(err) {
-		var result = {};
-		if (err) {
-			result.status = false;
-		} else {
-			result.status = true;
-		}
-		res.send(JSON.stringify(result, null, 4));
+		response(res, err, null);
 	})
 };
 
@@ -64,8 +57,6 @@ exports.listPostsAboutBaby = function(req, res, next) {
 
 	var post = new Post;
 	post.listAboutBaby(baby_id, page_num, function(err, posts) {
-		if (err) return next(err);
-		res.set('Content-Type', "application/json");
-		res.send(JSON.stringify(posts, null, 4));
+		response(res, err, posts);
 	});
 };

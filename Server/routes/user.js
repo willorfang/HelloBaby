@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Baby = require('../models/baby');
+var response = require('./util').response;
 
 // /users/123456
 exports.getUserInfo = function(req, res, next) {
@@ -15,11 +16,9 @@ exports.getUserInfo = function(req, res, next) {
 			"id": user.baby_id
 		});
 		baby.getByID(function(err, baby) {
-			if (err) return next(err);
 			user.baby = baby;
 			user.baby_id = undefined;
-			res.set('Content-Type', "application/json");
-			res.send(JSON.stringify(user, null, 4));
+			response(res, err, user);
 		});
 	});
 };
@@ -41,11 +40,9 @@ exports.login = function(req, res, next) {
 			"id": user.baby_id
 		});
 		baby.getByID(function(err, baby) {
-			if (err) return next(err);
 			user.baby = baby;
 			user.baby_id = undefined;
-			res.set('Content-Type', "application/json");
-			res.send(JSON.stringify(user, null, 4));
+			response(res, err, user);
 		});
 	});
 };

@@ -1,4 +1,5 @@
 var Baby = require('../models/baby');
+var response = require('./util').response;
 
 exports.register = function(req, res, next) {
 	var data = req.body.baby;
@@ -21,8 +22,7 @@ exports.register = function(req, res, next) {
 	});
 
 	baby.register(function(err) {
-		if (err) return next(err);
-		res.send('OK');
+		response(res, err, null);
 	});
 };
 
@@ -34,8 +34,6 @@ exports.getInfoByID = function(req, res, next) {
 	});
 
 	baby.getByID(function(err, result) {
-		if (err) return next(err);
-		res.set('Content-Type', "application/json");
-		res.send(JSON.stringify(result, null, 4));
+		response(res, err, result);
 	});
 };
