@@ -23,8 +23,6 @@
     CommentDataForPost* _commentToPost;
     // next pageNum to request
     NSInteger _nextPageNum;
-    // activity view
-    UIActivityIndicatorView* _activityView;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -32,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 - (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue;

@@ -27,10 +27,6 @@ static NSString* identifier = @"post-cell";
     
     _scrollView.delegate = self;
     
-    _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityView.center = self.view.center;
-    [self.view addSubview: _activityView];
-    
     // hidden field
     _hiddenField = [[UITextField alloc] init];
     [self.view addSubview:_hiddenField];
@@ -138,7 +134,7 @@ static NSString* identifier = @"post-cell";
         if (bottomScrollY >= boundary) {
             NSLog(@"Scrolled to the bottom");
             //
-            [_activityView startAnimating];
+            [_activityIndicator startAnimating];
             
             // request more contents HERE
             UserData* user = [UserData sharedUser];
@@ -151,7 +147,7 @@ static NSString* identifier = @"post-cell";
                     ++_nextPageNum;
                     // TODO: no sleep
                     [NSThread sleepForTimeInterval:2];
-                    [_activityView stopAnimating];
+                    [_activityIndicator stopAnimating];
                     [self reloadPostViews];
                 });
             }];
