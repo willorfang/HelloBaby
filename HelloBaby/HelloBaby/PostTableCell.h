@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSString* kNotificationCommentButtonClicked;
 @property (strong, nonatomic) IBOutlet UIButton *likeButton;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) IBOutlet UITableView *commentTableView;
-@property (nonatomic) IBOutlet NSInteger order;
+@property (nonatomic) NSInteger order;
 
 + (instancetype)view;
 + (CGFloat)margin;

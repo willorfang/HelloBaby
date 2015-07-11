@@ -118,6 +118,7 @@ NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
 }
 
 - (IBAction)goodClicked:(id)sender {
+    
 }
 
 - (IBAction)commentClicked:(id)sender {

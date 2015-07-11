@@ -36,6 +36,7 @@
 
 - (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue;
 - (void)updateWithAddPostData:(PostData*)data;
+-(void)initializeView;
 
 -(void)commentButtonClicked:(NSNotification*)notification;
 -(void)commentSendClicked:(NSNotification*)notification;

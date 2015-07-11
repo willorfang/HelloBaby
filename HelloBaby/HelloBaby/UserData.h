@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, RelationshipType) {
     kRelationshipAunt = 4
 };
 
+typedef void (^login_handler_t)();
+
 @interface UserData : NSObject
 
 @property NSInteger user_id;
@@ -28,5 +30,7 @@ typedef NS_ENUM(NSUInteger, RelationshipType) {
 +(NSString*) getRelationshipName:(RelationshipType)type;
 +(NSDate*) getDateFromUTC:(NSString*)time;
 +(UserData*) sharedUser;
-+(BOOL) loginWithName:(NSString*)username password:(NSString*)password;
++(BOOL) loginWithName:(NSString*)username
+             password:(NSString*)password
+      completeHandler:(login_handler_t)handler;
 @end

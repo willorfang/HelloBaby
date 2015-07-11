@@ -30,6 +30,7 @@
 		AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AED453721B2BFECB0050AA08 /* LoginViewController.m */; };
 		AED453791B31C9940050AA08 /* InputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AED453781B31C9940050AA08 /* InputBar.m */; };
 		AED4537B1B31C9A90050AA08 /* InputBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED4537A1B31C9A90050AA08 /* InputBar.xib */; };
+		AED4537E1B42EA030050AA08 /* URLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AED4537D1B42EA030050AA08 /* URLRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		AED453771B31C9940050AA08 /* InputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBar.h; sourceTree = "<group>"; };
 		AED453781B31C9940050AA08 /* InputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputBar.m; sourceTree = "<group>"; };
 		AED4537A1B31C9A90050AA08 /* InputBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputBar.xib; sourceTree = "<group>"; };
+		AED4537C1B42EA030050AA08 /* URLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequest.h; sourceTree = "<group>"; };
+		AED4537D1B42EA030050AA08 /* URLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 				AED4536C1B20A9930050AA08 /* UserData.m */,
 				AED4536E1B242B770050AA08 /* BabyData.h */,
 				AED4536F1B242B770050AA08 /* BabyData.m */,
+				AED4537C1B42EA030050AA08 /* URLRequest.h */,
+				AED4537D1B42EA030050AA08 /* URLRequest.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */,
 				AED4536D1B20A9930050AA08 /* UserData.m in Sources */,
 				AE0F6FD41AFE5B11006F09D4 /* PostData.m in Sources */,
+				AED4537E1B42EA030050AA08 /* URLRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,9 @@
 //
 
 #import "UserData.h"
+#import "URLRequest.h"
+
+NSString* kNotificationLogined = @"Logined";
 
 @implementation UserData
 
@@ -64,38 +67,20 @@ static NSString* kServerURL = @"http://localhost:3000";
     return sharedInstance;
 }
 
-+(BOOL) loginWithName:(NSString*)username password:(NSString*)password
++(BOOL) loginWithName:(NSString*)username password:(NSString*)password completeHandler:(login_handler_t)handler
 {
     [UserData sharedUser];
     
-    // request user data
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_async(group, queue, ^{
-        NSString* url = [NSString stringWithFormat:@"%@/login", kServerURL];
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: url]];
-        [request setHTTPMethod:@"POST"];
-        NSDictionary* dict = [NSDictionary dictionaryWithObjects:@[username, password]
-                                                         forKeys:@[@"username", @"password"]];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        NSError *error;
-        NSData* body = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
-        [request setHTTPBody:body];
-        
-        NSHTTPURLResponse *response;
-        // request
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (error) {
-            NSLog(@"REQUEST failed: %@", url);
+    // login
+    NSString* url = [NSString stringWithFormat:@"%@/login", kServerURL];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjects:@[username, password]
+                                                     forKeys:@[@"username", @"password"]];
+    [URLRequest postToURL:url WithJson:dict completeHandler:^(BOOL succeed, id dictData) {
+        if (!succeed) {
+            NSLog(@"JSON parse failed: %@", [[NSString alloc] initWithData:dictData encoding:NSUTF8StringEncoding]);
             return;
         }
-        // parse json
-        NSDictionary* dictData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        if (error) {
-            NSLog(@"JSON parse failed: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-            return;
-        }
-        // init
+        // init user data
         sharedInstance.user_id = [[dictData valueForKey:@"id"] integerValue];
         sharedInstance.username = [dictData valueForKey:@"username"];
         sharedInstance.relationship = [[dictData valueForKey:@"relationship"] integerValue];
@@ -111,49 +96,40 @@ static NSString* kServerURL = @"http://localhost:3000";
             NSString* birthday = [babyDictData valueForKey:@"birthday"];
             baby.birthday = [UserData getDateFromUTC:birthday];
             //
-            NSString* avatar = [babyDictData valueForKey:@"avatar"];
-            if (avatar) {
-                dispatch_group_async(group, queue, ^{
-                    NSString* url = [NSString stringWithFormat:@"%@/%@", kServerURL, avatar];
-                    NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString: url]];
-                    NSHTTPURLResponse *response;
-                    NSError *error;
-                    // request
-                    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-                    if (error) {
-                        NSLog(@"REQUEST IMG failed: %@", avatar);
-                    } else {
-                        baby.avatar = data;
-                    }
-                });
-            }
-            //
-            NSString* background = [babyDictData valueForKey:@"background"];
-            if (background) {
-                dispatch_group_async(group, queue, ^{
-                    NSString* url = [NSString stringWithFormat:@"%@/%@", kServerURL, background];
-                    NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString: url]];
-                    NSHTTPURLResponse *response;
-                    NSError *error;
-                    // request
-                    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-                    if (error) {
-                        NSLog(@"REQUEST IMG failed: %@", avatar);
-                    } else {
-                        baby.background = data;
-                    }
-                });
-            }
-            //
             baby.status = [babyDictData valueForKey:@"status"];
-            
             //
             sharedInstance.baby = baby;
+            
+            // load images if any
+            dispatch_group_t group = dispatch_group_create();
+            //
+            id avatar = [babyDictData valueForKey:@"avatar"];
+            if (avatar != [NSNull null]) {
+                //
+                NSString* url = [NSString stringWithFormat:@"%@/%@", kServerURL, avatar];
+                [URLRequest getFromURLDirectly:url WithJson:nil  WithGroup:group completeHandler:^(id avatarData) {
+                    baby.avatar = avatarData;
+                }];
+            }
+            //
+            id background = [babyDictData valueForKey:@"background"];
+            if (background != [NSNull null]) {
+                //
+                NSString* url = [NSString stringWithFormat:@"%@/%@", kServerURL, background];
+                [URLRequest getFromURLDirectly:url WithJson:nil WithGroup:group completeHandler:^(id backgroundData) {
+                    baby.background = backgroundData;
+                }];
+            }
+            
+            // wait until all loaded
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            NSLog(@"User logined");
+            
+            if (handler) {
+                handler();
+            }
         }
-    });
-    
-    // wait until done
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    }];
     
     return TRUE;
 }

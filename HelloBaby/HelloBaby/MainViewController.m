@@ -31,37 +31,14 @@ static NSString* identifier = @"post-cell";
     _activityView.center = self.view.center;
     [self.view addSubview: _activityView];
     
-    // init user info
-    UserData* user = [UserData sharedUser];
-    
-    _statusLabel.text = user.baby.status;
-    _naviItem.title = [user getIdentityName];
-    if (user.baby.avatar) {
-        _avatarImageView.image = [UIImage imageWithData:user.baby.avatar];
-    }
-    if (user.baby.background) {
-        _backgroundImageView.image = [UIImage imageWithData:user.baby.background];
-    }
-    
-    // prepare the post data here
-    _request = [[PostDataRequest alloc] init];
-    _nextPageNum = 0;
-    [_request requestPostsAboutBaby:user.baby.id pageNum:_nextPageNum updateHandler:^(NSMutableArray *data) {
-        _postDataArray = data;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // create post views
-            ++_nextPageNum;
-            _startY = _backgroundImageView.frame.origin.y + _backgroundImageView.frame.size.height;
-            [self reloadPostViews];
-        });
-    }];
-    
-    //
+    // hidden field
     _hiddenField = [[UITextField alloc] init];
     [self.view addSubview:_hiddenField];
     // add input view for comment
     _inputBar = [InputBar view];
     _hiddenField.inputAccessoryView = _inputBar;
+    
+    [self initializeView];
     
     // notifications
     _commentToPost = [[CommentDataForPost alloc] init];
@@ -95,18 +72,50 @@ static NSString* identifier = @"post-cell";
     PostDataRequest* req = [[PostDataRequest alloc] init];
     [req addCommentToPost:_commentToPost.record_id
                    byUser:_commentToPost.poster_id
-              withMessage:_commentToPost.content completeHandler:^{
-        NSLog(@"Comment added.");
-        CommentDataForShow* commentData = [[CommentDataForShow alloc] init];
-        commentData.content = _commentToPost.content;
-        commentData.username = [[UserData sharedUser] username];
-        PostData* postData = [_postDataArray objectAtIndex:_commentToPost.order];
-        [postData.commentArray addObject:commentData];
+              withMessage:_commentToPost.content completeHandler:^(BOOL status, id result){
+                  if (status) {
+                      NSLog(@"Add Comment succeed.");
+                      CommentDataForShow* commentData = [[CommentDataForShow alloc] init];
+                      commentData.content = _commentToPost.content;
+                      commentData.username = [[UserData sharedUser] username];
+                      PostData* postData = [_postDataArray objectAtIndex:_commentToPost.order];
+                      [postData.commentArray addObject:commentData];
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          [self reloadPostViews];
+                      });
+                  } else {
+                      NSLog(@"Add Comment Failed.");
+                  }
+    }];
+    
+}
+
+-(void)initializeView
+{
+    // init user info
+    UserData* user = [UserData sharedUser];
+    
+    _statusLabel.text = user.baby.status;
+    _naviItem.title = [user getIdentityName];
+    if (user.baby.avatar) {
+        _avatarImageView.image = [UIImage imageWithData:user.baby.avatar];
+    }
+    if (user.baby.background) {
+        _backgroundImageView.image = [UIImage imageWithData:user.baby.background];
+    }
+    
+    // prepare the post data here
+    _request = [[PostDataRequest alloc] init];
+    _nextPageNum = 0;
+    [_request requestPostsAboutBaby:user.baby.id pageNum:_nextPageNum updateHandler:^(NSMutableArray *data) {
+        _postDataArray = data;
         dispatch_async(dispatch_get_main_queue(), ^{
+            // create post views
+            ++_nextPageNum;
+            _startY = _backgroundImageView.frame.origin.y + _backgroundImageView.frame.size.height;
             [self reloadPostViews];
         });
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning

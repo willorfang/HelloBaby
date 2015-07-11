@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)login:(id)sender;
 - (IBAction)signUp:(id)sender;
@@ -48,7 +49,14 @@
 - (IBAction)login:(id)sender {
     NSString* username = _usernameTextField.text;
     NSString* password = _passwordField.text;
-    [UserData loginWithName:username password:password];
+    
+    [_activityIndicator startAnimating];
+    [UserData loginWithName:username password:password completeHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_activityIndicator stopAnimating];
+            [self performSegueWithIdentifier:@"segueLogined" sender:self];
+        });
+    }];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField

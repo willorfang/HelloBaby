@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "URLRequest.h"
 
 @interface CommentDataForPost : NSObject
 
@@ -41,7 +42,6 @@
 @end
 
 typedef void (^update_handler_t)(NSMutableArray*);
-typedef void (^empty_handler_t)();
 
 @interface PostDataRequest : NSObject {
     // response JSON data
@@ -57,12 +57,16 @@ typedef void (^empty_handler_t)();
            withMessage:(NSString*)msg
               AndImage:(UIImage*)image
                 atTime:(NSString*)timestamp
-       completeHandler:(empty_handler_t)handler;
+       completeHandler:(request_handler_t)handler;
 
 -(void) addCommentToPost:(NSInteger)record_id
                   byUser:(NSInteger)user_id
              withMessage:(NSString*)content
-         completeHandler:(empty_handler_t)handler;
+         completeHandler:(request_handler_t)handler;
+
+-(void) addGoodToPost:(NSInteger)record_id
+               byUser:(NSInteger)user_id
+         completeHandler:(request_handler_t)handler;
 
 
 @end

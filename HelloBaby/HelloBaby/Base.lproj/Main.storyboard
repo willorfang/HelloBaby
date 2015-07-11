@@ -202,7 +202,6 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="fED-qR-EOD" eventType="touchUpInside" id="6ay-Fg-1ZB"/>
-                                    <segue destination="49e-Tb-3d3" kind="modal" id="imc-Vl-EZJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宝宝你好" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lmp-tk-6rK">
@@ -223,18 +222,25 @@
                                     <action selector="signUp:" destination="fED-qR-EOD" eventType="touchUpInside" id="UzL-QI-hud"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="X30-Kj-uMP">
+                                <rect key="frame" x="150" y="175" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.34898372529999999" green="0.85263978789999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="X30-Kj-uMP" id="cco-2o-oqi"/>
                         <outlet property="loginButton" destination="0RQ-nB-BVj" id="KdD-Y8-hAV"/>
                         <outlet property="passwordField" destination="gh9-Kr-vTD" id="6zx-i2-4kF"/>
                         <outlet property="usernameTextField" destination="NTO-m5-Nks" id="9w4-d5-fkZ"/>
+                        <segue destination="49e-Tb-3d3" kind="modal" identifier="segueLogined" id="cUM-aN-HYn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppQ-sI-VxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="-27"/>
+            <point key="canvasLocation" x="-561" y="-27"/>
         </scene>
         <!--Root-->
         <scene sceneID="yl2-sM-qoP">
