@@ -43,6 +43,8 @@ static NSString* identifier = @"post-cell";
            selector:@selector(commentButtonClicked:) name:kNotificationCommentButtonClicked object:nil];
     [nc addObserver:self
            selector:@selector(commentSendClicked:) name:kNotificationCommentSendClicked object:nil];
+    [nc addObserver:self
+           selector:@selector(goodButtonClicked:) name:kNotificationGoodButtonClicked object:nil];
 }
 
 -(void)commentButtonClicked:(NSNotification*)notification
@@ -82,6 +84,29 @@ static NSString* identifier = @"post-cell";
                   } else {
                       NSLog(@"Add Comment Failed.");
                   }
+    }];
+    
+}
+
+-(void)goodButtonClicked:(NSNotification*)notification
+{
+    NSDictionary* dict = [notification userInfo];
+    NSInteger poster_id = [[dict objectForKey:@"poster_id"] integerValue];
+    NSInteger record_id = [[dict objectForKey:@"record_id"] integerValue];
+    NSInteger order = [[dict objectForKey:@"order"] integerValue];
+    //
+    PostDataRequest* req = [[PostDataRequest alloc] init];
+    [req addGoodToPost:record_id byUser:poster_id completeHandler:^(BOOL succeed, id results) {
+        if (succeed) {
+            NSLog(@"Add good succeed.");
+            PostData* postData = [_postDataArray objectAtIndex:order];
+            ++postData.goodNum;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self reloadPostViews];
+            });
+        } else {
+            NSLog(@"Add good fail.");
+        }
     }];
     
 }

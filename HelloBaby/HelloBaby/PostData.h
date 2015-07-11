@@ -34,7 +34,7 @@
 @property NSInteger relationship;
 @property (strong, nonatomic) NSString* postTime;
 @property (strong, nonatomic) NSMutableArray* commentArray;
-@property NSInteger likeNum;
+@property NSInteger goodNum;
 
 -(NSString*) getStatusString;
 +(NSString*) getTimeFromUTC:(NSString*)time;

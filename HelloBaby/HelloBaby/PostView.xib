@@ -62,7 +62,7 @@
             <connections>
                 <outlet property="commentButton" destination="w8B-uJ-mFv" id="7A0-Dz-XTR"/>
                 <outlet property="commentTableView" destination="yGl-wG-DMx" id="GF0-jn-Bca"/>
-                <outlet property="likeButton" destination="F93-HY-1om" id="ncj-QR-KUd"/>
+                <outlet property="goodButton" destination="F93-HY-1om" id="6yf-kX-iHh"/>
                 <outlet property="postImage" destination="ies-pI-6A4" id="dDg-ug-zfQ"/>
                 <outlet property="postLabel" destination="3ou-B1-sJf" id="gy4-Nm-pl2"/>
                 <outlet property="postStatus" destination="qsb-Rq-Ilh" id="Hfg-qV-wW8"/>

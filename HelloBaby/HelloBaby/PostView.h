@@ -10,6 +10,7 @@
 #import "PostData.h"
 
 FOUNDATION_EXPORT NSString* kNotificationCommentButtonClicked;
+FOUNDATION_EXPORT NSString* kNotificationGoodButtonClicked;
 
 @interface PostView : UIView<UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray* _commentArray;
@@ -19,7 +20,7 @@ FOUNDATION_EXPORT NSString* kNotificationCommentButtonClicked;
 @property (strong, nonatomic) IBOutlet UITextView *postLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *postImage;
 @property (strong, nonatomic) IBOutlet UITextField *postStatus;
-@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+@property (strong, nonatomic) IBOutlet UIButton *goodButton;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) IBOutlet UITableView *commentTableView;
 @property (nonatomic) NSInteger order;

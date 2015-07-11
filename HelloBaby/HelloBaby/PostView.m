@@ -11,6 +11,7 @@
 #import "UserData.h"
 
 NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
+NSString* kNotificationGoodButtonClicked = @"GoodButtonClicked";
 
 @implementation PostView
 
@@ -93,20 +94,20 @@ NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
                                     originY,
                                     _postStatus.frame.size.width,
                                     _postStatus.frame.size.height)];
-    [_likeButton setFrame:CGRectMake(_likeButton.frame.origin.x,
+    [_goodButton setFrame:CGRectMake(_goodButton.frame.origin.x,
                                      originY,
-                                     _likeButton.frame.size.width,
-                                     _likeButton.frame.size.height)];
+                                     _goodButton.frame.size.width,
+                                     _goodButton.frame.size.height)];
     [_commentButton setFrame:CGRectMake(_commentButton.frame.origin.x,
                                      originY,
                                      _commentButton.frame.size.width,
                                      _commentButton.frame.size.height)];
     // good
-    [_likeButton setTitle:[NSString stringWithFormat:@"%ld", (long)_data.likeNum] forState:UIControlStateNormal];
+    [_goodButton setTitle:[NSString stringWithFormat:@"%ld", (long)_data.goodNum] forState:UIControlStateNormal];
     
     // comment
     _commentArray = _data.commentArray;
-    originY += _likeButton.frame.size.height + spacing;
+    originY += _goodButton.frame.size.height + spacing;
     [_commentTableView reloadData];
     [_commentTableView setFrame: CGRectMake(_commentTableView.frame.origin.x,
                                            originY,
@@ -118,11 +119,19 @@ NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
 }
 
 - (IBAction)goodClicked:(id)sender {
+    NSNumber* poster_id = [NSNumber numberWithInteger:[[UserData sharedUser] user_id]];
+    NSNumber* record_id = [NSNumber numberWithInteger:_data.postID];
+    NSNumber* order = [NSNumber numberWithInteger:self.order];
+    NSDictionary *info = [NSDictionary dictionaryWithObjects:@[poster_id, record_id, order]
+                                                     forKeys:@[@"poster_id", @"record_id", @"order"]];
+    NSNotification *notification = [NSNotification notificationWithName:kNotificationGoodButtonClicked
+                                                                 object:self
+                                                               userInfo:info];
     
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 - (IBAction)commentClicked:(id)sender {
-    // show keyboard
     NSNumber* poster_id = [NSNumber numberWithInteger:[[UserData sharedUser] user_id]];
     NSNumber* record_id = [NSNumber numberWithInteger:_data.postID];
     NSNumber* order = [NSNumber numberWithInteger:self.order];

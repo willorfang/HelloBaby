@@ -39,6 +39,7 @@
 
 -(void)commentButtonClicked:(NSNotification*)notification;
 -(void)commentSendClicked:(NSNotification*)notification;
-    
+-(void)goodButtonClicked:(NSNotification*)notification;
+
 @end
 

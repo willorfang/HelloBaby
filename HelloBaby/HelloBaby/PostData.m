@@ -89,7 +89,7 @@ static NSString* kServerURL = @"http://localhost:3000";
                 }
                 data.relationship = [[item valueForKey:@"relationship"] integerValue];
                 data.postTime = [PostData getTimeFromUTC:[item valueForKey:@"time"]];
-                data.likeNum = [[item valueForKey:@"goodNum"] integerValue];
+                data.goodNum = [[item valueForKey:@"goodNum"] integerValue];
                 data.postID = [[item valueForKey:@"id"] integerValue];
                 //
                 [postDataArray addObject:data];
