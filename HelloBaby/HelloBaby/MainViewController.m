@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "PostTableCell.h"
+#import "PostView.h"
 #import "PostNewItemViewController.h"
 #import "UserData.h"
 
@@ -161,7 +161,7 @@ static NSString* identifier = @"post-cell";
 -(void) reloadPostViews
 {
     // clear
-    CGFloat margin = [PostTableCell margin];
+    CGFloat margin = [PostView margin];
     CGFloat originY = _startY;
     [_postViewArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _postViewArray = [[NSMutableArray alloc] init];
@@ -169,7 +169,7 @@ static NSString* identifier = @"post-cell";
     int index = 0;
     for (id item in _postDataArray) {
         PostData* postData = (PostData*)item;
-        PostTableCell* cell = [[PostTableCell view] fillWithData:postData];
+        PostView* cell = [[PostView view] fillWithData:postData];
         cell.order = index++;
         //
         cell.frame = CGRectMake(margin, originY, cell.frame.size.width, cell.frame.size.height);

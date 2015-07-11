@@ -1,18 +1,18 @@
 //
-//  PostTableCell.m
+//  PostView.m
 //  HelloBaby
 //
 //  Created by Wei Fang on 2015/05/09.
 //  Copyright (c) 2015年 Wei Fang. All rights reserved.
 //
 
-#import "PostTableCell.h"
+#import "PostView.h"
 #import "PostData.h"
 #import "UserData.h"
 
 NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
 
-@implementation PostTableCell
+@implementation PostView
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -27,7 +27,7 @@ NSString* kNotificationCommentButtonClicked = @"CommentButtonClicked";
     [super awakeFromNib];
     
     // Initialization code
-    CGFloat width = [[UIScreen mainScreen] bounds].size.width - [PostTableCell margin]*2;
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width - [PostView margin]*2;
     self.bounds = CGRectMake(0, 0, width, 0);
     //
     [_commentTableView setDataSource:self];

@@ -1,5 +1,5 @@
 //
-//  PostTableCell.h
+//  PostView.h
 //  HelloBaby
 //
 //  Created by Wei Fang on 2015/05/09.
@@ -11,7 +11,7 @@
 
 FOUNDATION_EXPORT NSString* kNotificationCommentButtonClicked;
 
-@interface PostTableCell : UIView<UITableViewDataSource, UITableViewDelegate> {
+@interface PostView : UIView<UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray* _commentArray;
     PostData* _data;
 }

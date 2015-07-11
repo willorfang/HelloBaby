@@ -14,8 +14,8 @@
 		AE0F6FAC1AFE03EB006F09D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */; };
 		AE0F6FAE1AFE03EB006F09D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FAD1AFE03EB006F09D4 /* Images.xcassets */; };
 		AE0F6FBD1AFE03EB006F09D4 /* HelloBabyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FBC1AFE03EB006F09D4 /* HelloBabyTests.m */; };
-		AE0F6FC71AFE4D26006F09D4 /* PostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */; };
-		AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */; };
+		AE0F6FC71AFE4D26006F09D4 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FC61AFE4D26006F09D4 /* PostView.xib */; };
+		AE0F6FD11AFE57BA006F09D4 /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FD01AFE57BA006F09D4 /* PostView.m */; };
 		AE0F6FD41AFE5B11006F09D4 /* PostData.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F6FD31AFE5B11006F09D4 /* PostData.m */; };
 		AE0F6FEE1AFE6863006F09D4 /* baby.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE61AFE6863006F09D4 /* baby.png */; };
 		AE0F6FF11AFE6863006F09D4 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F6FE91AFE6863006F09D4 /* comment.png */; };
@@ -58,9 +58,9 @@
 		AE0F6FB61AFE03EB006F09D4 /* HelloBabyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloBabyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0F6FBB1AFE03EB006F09D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0F6FBC1AFE03EB006F09D4 /* HelloBabyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloBabyTests.m; sourceTree = "<group>"; };
-		AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableCell.xib; sourceTree = "<group>"; };
-		AE0F6FCF1AFE57BA006F09D4 /* PostTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableCell.h; sourceTree = "<group>"; };
-		AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableCell.m; sourceTree = "<group>"; };
+		AE0F6FC61AFE4D26006F09D4 /* PostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
+		AE0F6FCF1AFE57BA006F09D4 /* PostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostView.h; sourceTree = "<group>"; };
+		AE0F6FD01AFE57BA006F09D4 /* PostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostView.m; sourceTree = "<group>"; };
 		AE0F6FD21AFE5B11006F09D4 /* PostData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostData.h; sourceTree = "<group>"; };
 		AE0F6FD31AFE5B11006F09D4 /* PostData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostData.m; sourceTree = "<group>"; };
 		AE0F6FE61AFE6863006F09D4 /* baby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = baby.png; path = res/baby.png; sourceTree = "<group>"; };
@@ -165,9 +165,9 @@
 		AE0F6FCD1AFE53D8006F09D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AE0F6FC61AFE4D26006F09D4 /* PostTableCell.xib */,
-				AE0F6FCF1AFE57BA006F09D4 /* PostTableCell.h */,
-				AE0F6FD01AFE57BA006F09D4 /* PostTableCell.m */,
+				AE0F6FC61AFE4D26006F09D4 /* PostView.xib */,
+				AE0F6FCF1AFE57BA006F09D4 /* PostView.h */,
+				AE0F6FD01AFE57BA006F09D4 /* PostView.m */,
 				AE0F6FAA1AFE03EB006F09D4 /* Main.storyboard */,
 				AED453771B31C9940050AA08 /* InputBar.h */,
 				AED453781B31C9940050AA08 /* InputBar.m */,
@@ -300,7 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0F6FC71AFE4D26006F09D4 /* PostTableCell.xib in Resources */,
+				AE0F6FC71AFE4D26006F09D4 /* PostView.xib in Resources */,
 				AE0F6FFF1AFFC8AE006F09D4 /* add_image.png in Resources */,
 				AE0F6FF11AFE6863006F09D4 /* comment.png in Resources */,
 				AE0F6FEE1AFE6863006F09D4 /* baby.png in Resources */,
@@ -336,7 +336,7 @@
 				AED453731B2BFECB0050AA08 /* LoginViewController.m in Sources */,
 				AE0F6FA61AFE03EB006F09D4 /* MainViewController.m in Sources */,
 				AE0F6FA01AFE03EB006F09D4 /* main.m in Sources */,
-				AE0F6FD11AFE57BA006F09D4 /* PostTableCell.m in Sources */,
+				AE0F6FD11AFE57BA006F09D4 /* PostView.m in Sources */,
 				AED4536D1B20A9930050AA08 /* UserData.m in Sources */,
 				AE0F6FD41AFE5B11006F09D4 /* PostData.m in Sources */,
 				AED4537E1B42EA030050AA08 /* URLRequest.m in Sources */,
