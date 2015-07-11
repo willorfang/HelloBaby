@@ -1,0 +1,8 @@
+1) login:
+curl -i -H "Content-Type: application/json" -X POST -d '{"username":"mom1", "password":"mom1"}' http://localhost:3000/login
+
+2) list posts of baby 1:
+curl -i http://localhost:3000/babies/1/posts?num=0
+
+3) new post:
+curl -i -F "record[baby_id]=1" -F "record[poster_id]=1" -F "record[content]=麻麻，要麻麻......" -F "img=@path/to/baby_1.jpg" http://localhost:3000/posts
